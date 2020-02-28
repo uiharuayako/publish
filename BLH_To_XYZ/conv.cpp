@@ -29,17 +29,32 @@ int main()
 		switch (cho)
 		{
 		case 1:
+		{
 			po.last_conv = 1;
-			cout << "请输入大地经度:";
-			double L;
-			cin >> L;
-			cout << "请输入大地纬度:";
-			double B;
-			cin >> B;
+			cout << "请输入大地经度的度数:";
+			double L_d;
+			cin >> L_d;
+			cout << "请输入大地经度的分数:";
+			double L_m;
+			cin >> L_m;
+			cout << "请输入大地经度的秒数:";
+			double L_s;
+			cin >> L_s;
+			double L = L_d + L_m / 60 + L_s / 3600;
+			cout << "请输入大地纬度的度数:";
+			double B_d;
+			cin >> B_d;
+			cout << "请输入大地纬度的分数:";
+			double B_m;
+			cin >> B_m;
+			cout << "请输入大地纬度的秒数:";
+			double B_s;
+			cin >> B_s;
+			double B = B_d + B_m / 60 + B_s / 3600;
 			cout << "请输入大地高:";
 			double H;
 			cin >> H;
-			switch (po.set_BLH(B*PI/180, L*PI/180, H))
+			switch (po.set_BLH(B * PI / 180, L * PI / 180, H))
 			{
 			case 1:
 				cout << "纬度出错\n" << endl;
@@ -51,6 +66,7 @@ int main()
 			}
 			BLH_To_XYZ(po);
 			break;
+		}
 		case 2:
 			po.last_conv = 2;
 			cout << "请输入X:";
