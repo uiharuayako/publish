@@ -10,7 +10,6 @@ public class homework7 {
         System.out.println("你喜欢的正整数：(如果输入负数会自动转换为正数)");
         int num;
         num = Math.abs(input_num.nextInt());
-            if(is_prime(i)) System.out.print(i+" ");
         for (int i = num; i >= 2; i--) {
             if (is_prime(i)) System.out.print(i + " ");
         }
