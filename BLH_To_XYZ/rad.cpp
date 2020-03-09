@@ -1,5 +1,6 @@
 #include "rad.h"
 
+
 void Date::set_ab(double ar, double br)
 {
 	a = ar;
