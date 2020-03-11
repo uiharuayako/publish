@@ -1,0 +1,15 @@
+//: c05:ChocolateChip.java
+
+import c05.dessert.*;
+
+public class ChocolateChip extends Cookie {
+    public ChocolateChip() {
+        System.out.println(
+                "ChocolateChip constructor");
+    }
+
+    public static void main(String[] args) {
+        ChocolateChip x = new ChocolateChip();
+        x.bite();  //! // Can't access bite
+    }
+}  

@@ -1,0 +1,9 @@
+class ThisClass
+{   void  someMethod(ThisClass s){};
+    public static void main()
+    {
+         ThisClass bank=new ThisClass;
+         bank.someMethod(this);
+		 //bank.someMethod(bank);       
+    }
+}
