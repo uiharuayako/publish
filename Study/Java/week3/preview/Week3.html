@@ -1,0 +1,183 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:Week3</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="-">第四周作业</h1>
+<h2 id="-">第一题</h2>
+<pre><code>什么是面向对象程序设计？与面向过程程序设计的区别？主要优点有哪些？
+</code></pre><h3 id="-">第一问</h3>
+<p>面向对象程序设计是一种用人们<strong>通常的思维方式</strong>来建立问题模型的程序设计方式。人们引入“对象”这一概念来表现事物并建立问题的模型。 面向对象是一种<strong>对现实世界理解和抽象的方法</strong>。<br>面向对象的程序设计就是<strong>使用类和对象以及面向对象特有的概念进行编程</strong></p>
+<h3 id="-">第二问</h3>
+<p>面向对象与面向过程设计的区别在于编程思想方面的区别。  </p>
+<p>面向过程设计是一种<strong>以过程为中心</strong>的解决问题方案，通过一个个步骤的执行达成目标，在程序中就是设计函数模块来解决问题。比如要排序一个数组，面向过程的方式是函数+数据。比如在C中，要返回一个字符串的长度，string.h提供了strlen方法。</p>
+<blockquote>
+<p>extern unsigned int strlen(char *s) //strlen把数据放进函数里返回长度，这是面向过程的做法。</p>
+</blockquote>
+<p>而在面向对象的设计理念中，数组是一个类，其长度是类的一个属性（虽然并不能直接获得），可以通过成员函数计算出来。比如：</p>
+<blockquote>
+<p>arr.length()</p>
+</blockquote>
+<h3 id="-">第三问</h3>
+<p>面向对象程序设计的优点很多，我认为最重要的一点是OOP易于理解。虽然对于初学者来说（比如我）第一次搞懂对象的概念可能比较困难，相比之下，理解面向过程一步步的解决问题反而更为自然。回想一下其实能发现，面向对象是一种更<strong>正常</strong>的思维方式。在生活中，人不同于机械，很少会用同一套范式处理不同的问题，而是具体问题具体分析。<br>在实际编程方面，OOP的好处体现在其方式设计的程序易于维护和修改，且模块化程度大大提高，使得代码的重用率提高，减小重复工作量。同时易于拓展，可以方便的开发新功能。<br>OOP还有如下特性:</p>
+<ul>
+<li><p>封装性：将对象的私有数据与公共数据分离开，增强程序的稳定性，防止过程中数据的不当修改导致程序发生未知错误。同时这种方式<strong>将数据与操作结合</strong>，解决了面向过程设计中的一些问题。当然，由于这种封装性，类如同一个黑匣子，程序员可以在不知道其内部运行机制的情况下使用类。</p>
+</li>
+<li><p>自治性：每个对象都是一个独立的整体，可以<strong>根据自身定义的操作</strong>管理自己。而在一个对象想要影响其他对象时，也不能直接操作，而需要调用另一个对象的接口函数（即<strong>消息</strong>）。</p>
+</li>
+<li><p>安全性：封装性已经很能体现类的安全性了。</p>
+</li>
+<li><p>拓展性：可拓展性是类的一个重要特征，主要体现在其继承和多态等方面。类的拓展性使得程序员可以更方便的为项目添加新功能，而不用重写现有的代码。</p>
+</li>
+</ul>
+<h2 id="-">第二题</h2>
+<pre><code>简述抽象与封装、继承与多态性等的概念。
+</code></pre><h3 id="-">抽象</h3>
+<p>抽象是设计程序时运用的一种重要方法。要求程序员去除掉分析对象的<strong>次要部分</strong>，而保留其<strong>本质特征</strong>，以达到将数据或者过程对象化的目的。</p>
+<h3 id="-">封装</h3>
+<p>封装是将抽象出的数据类型，以及基于这些数据的操作（方法）结合，绑定的操作。数据在封装后就被<strong>保护</strong>在了抽象数据类型的内部。</p>
+<h3 id="-">继承</h3>
+<p>继承是两个类之间的关系，一个类可以从另一个类中获得其原有的数据和方法。类可以进行多级继承，在继承的过程中，代码被多次使用，减少了工作量。</p>
+<h3 id="-">多态性</h3>
+<p>我觉得多态性的概念十分复杂，简而言之就是<strong>同名的方法</strong>在<strong>不同情况下</strong>被智能调用。目前我了解的多态性的体现有通过参数重载同名方法，以及重写父类的同名方法两个方面。</p>
+<h2 id="-">第三题</h2>
+<pre><code>Java程序使用的类分为哪两大类？举例说明。
+</code></pre><h3 id="-">系统定义的类</h3>
+<p>例子</p>
+<blockquote>
+<p>具有各种功能的System类<br>处理字符串的StringBuilder类<br>处理数组的Array类</p>
+</blockquote>
+<h3 id="-">用户定义的类</h3>
+<p>例子：bird类</p>
+<pre><code>public static class Bird{  
+public void fly(){ 
+System.out.println(&quot;我会飞&quot;);  
+        }  
+    }  
+}
+</code></pre><h2 id="-">第四题</h2>
+<pre><code>什么是访问控制符？有哪些访问控制符？哪些可以用来修饰类？哪些用来修饰域和方法？
+</code></pre><h3 id="-">第一问</h3>
+<p>访问控制符是<strong>用于控制其他类对某一类的访问权限</strong>的修饰符。</p>
+<h3 id="-">第二、三、四问</h3>
+<p>有public 、protected 、private三种访问控制符，当然，如果什么都不加，也算一种访问控制符。我觉得这三种修饰符都可以用来修饰类，域（成员变量），和方法。</p>
+<h2 id="-">第五题</h2>
+<pre><code>根据常识建立类继承结构图：动物、鱼、狗、鲨鱼、猿猴、人、软体动物、鸟、哺乳动物、鸡、麻雀、脊椎动物、鲸鱼、蜗牛。并为其中鸟类设计状态与行为。 
+</code></pre><p>使用Staruml创建，源文件已附上
+<img src="animals.png" alt="类图"></p>
+<h2 id="-">第六题</h2>
+<pre><code>编程实现计算正方形、三角形、矩形及圆形面积计算功能。
+
+要求：
+
+1）定义两个包，所有类几何形体类定义shape包中，含main()方法的类定义在app中  
+
+2）在定义抽象类Shape,在其中定义area()方法计算并输出图形面积；定义正方形、三角形、矩形及圆形类继承Shape类，实现各自的面积计算，其中长、宽、高、半径等基本几何要素设为private；定义各类必要的构造方法及其它辅助方法
+
+3）实现使用静态成员变量来计算内存中的实例化的各几何图形对象数目。
+</code></pre><p>见week3项目的源代码（github上的week数比我实际学习的日期少一周）
+附上含有main函数的部分  </p>
+<pre><code>package app;
+
+import shape.*;
+
+public class App {
+    static void print_area(Shape s){
+        System.out.println(s.name()+&quot;的面积为&quot;+s.area());
+    }
+    public static void main(String[] args) {
+        Round cir=new Round(3);
+        Rectangle rec=new Rectangle(5,6);
+        Square squ=new Square(5);
+        Triangle tri=new Triangle(3,4);
+        System.out.println(&quot;一共初始化了&quot;+Round.times+&quot;个属于Shape抽象类的对象&quot;);
+        print_area(cir);
+        print_area(rec);
+        print_area(squ);
+        print_area(tri);
+    }
+}
+</code></pre>
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
