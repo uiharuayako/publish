@@ -1,7 +1,7 @@
 <html>
   <head>
 	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>i5ting_ztree_toc:Week3</title>
+    <title>i5ting_ztree_toc:Readme</title>
 		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
 		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
 		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
@@ -103,6 +103,27 @@
 <h3 id="-">多态性</h3>
 <p>我觉得多态性的概念十分复杂，简而言之就是<strong>同名的方法</strong>在<strong>不同情况下</strong>被智能调用。目前我了解的多态性的体现有通过参数重载同名方法，以及重写父类的同名方法两个方面。</p>
 <h2 id="-">第三题</h2>
+<pre><code>什么叫对象？什么叫类？举例说明类和对象有什么关系。类与C语言中的类型有何不同？ 
+</code></pre><h2 id="-">第一问</h2>
+<p>广义上说，<strong>现实世界的一切事物</strong>都是对象，对于程序设计来说，对象是<strong>属性</strong>（成员变量，或域）和<strong>方法</strong>（成员函数）的集合。</p>
+<h2 id="-">第二问</h2>
+<p>类是具体对象的模型，是描述对象的<strong>基本原型</strong>，对象是类的实例。类和对象就像图纸和成品的关系。拿现实世界的东西打比方的话，比如某一型号的手机是一个类，这个类可以定义不同颜色，不同ROM,RAM大小的手机，这些手机虽然可能有不一样之处，但都拥有定义在类中的共性，比如SOC相同，相机模组相同等。</p>
+<h2 id="-">第三问</h2>
+<p>C++中的结构基本上和类是相同的，甚至有继承的特性，比如这样一段代码：</p>
+<pre><code>struct A
+{
+int x;
+    int y;
+};
+struct B:public A
+{
+    int z;
+    B(int xx, int yy, int zz) {
+        x = xx; y = yy; z = zz;
+    }
+};
+</code></pre><p>在C++中是完全成立的。但是在C中，结构体里不能有方法，也没有继承等OOP的特性，这就是C的结构与Java类的区别。</p>
+<h2 id="-">第四题</h2>
 <pre><code>Java程序使用的类分为哪两大类？举例说明。
 </code></pre><h3 id="-">系统定义的类</h3>
 <p>例子</p>
@@ -117,17 +138,17 @@ System.out.println(&quot;我会飞&quot;);
         }  
     }  
 }
-</code></pre><h2 id="-">第四题</h2>
+</code></pre><h2 id="-">第五题</h2>
 <pre><code>什么是访问控制符？有哪些访问控制符？哪些可以用来修饰类？哪些用来修饰域和方法？
 </code></pre><h3 id="-">第一问</h3>
 <p>访问控制符是<strong>用于控制其他类对某一类的访问权限</strong>的修饰符。</p>
 <h3 id="-">第二、三、四问</h3>
 <p>有public 、protected 、private三种访问控制符，当然，如果什么都不加，也算一种访问控制符。我觉得这三种修饰符都可以用来修饰类，域（成员变量），和方法。</p>
-<h2 id="-">第五题</h2>
+<h2 id="-">第六题</h2>
 <pre><code>根据常识建立类继承结构图：动物、鱼、狗、鲨鱼、猿猴、人、软体动物、鸟、哺乳动物、鸡、麻雀、脊椎动物、鲸鱼、蜗牛。并为其中鸟类设计状态与行为。 
 </code></pre><p>使用Staruml创建，源文件已附上
 <img src="animals.png" alt="类图"></p>
-<h2 id="-">第六题</h2>
+<h2 id="-">第七题</h2>
 <pre><code>编程实现计算正方形、三角形、矩形及圆形面积计算功能。
 
 要求：
@@ -137,8 +158,7 @@ System.out.println(&quot;我会飞&quot;);
 2）在定义抽象类Shape,在其中定义area()方法计算并输出图形面积；定义正方形、三角形、矩形及圆形类继承Shape类，实现各自的面积计算，其中长、宽、高、半径等基本几何要素设为private；定义各类必要的构造方法及其它辅助方法
 
 3）实现使用静态成员变量来计算内存中的实例化的各几何图形对象数目。
-</code></pre><p>见week3项目的源代码（github上的week数比我实际学习的日期少一周）
-附上含有main函数的部分  </p>
+</code></pre><p>见week3项目的源代码（github上的week数比我实际学习的日期少一周）<br>附上含有main函数的部分<br>实现了输出形状名称与面积的功能</p>
 <pre><code>package app;
 
 import shape.*;
