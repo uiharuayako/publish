@@ -17,7 +17,7 @@ public class Triangle extends Shape{
 
     @Override
     public String name() {
-        return "Èý½ÇÐÎ";
+        return "ä¸‰è§’å½¢";
     }
 
 }

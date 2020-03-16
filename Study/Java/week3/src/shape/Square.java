@@ -19,6 +19,6 @@ public class Square extends Shape{
 
     @Override
     public String name() {
-        return "Õý·½ÐÎ";
+        return "æ­£æ–¹å½¢";
     }
 }

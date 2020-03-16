@@ -9,7 +9,6 @@
  * templates as examples.
  *
  */
-package myprojects.a;
 
 import java.awt.*;
 import java.awt.event.*;

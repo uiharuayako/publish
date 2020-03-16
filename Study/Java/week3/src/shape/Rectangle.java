@@ -23,6 +23,6 @@ public class Rectangle extends Shape{
 
     @Override
     public String name() {
-        return "¾ØĞÎ";
+        return "çŸ©å½¢";
     }
 }

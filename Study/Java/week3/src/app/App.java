@@ -4,14 +4,14 @@ import shape.*;
 
 public class App {
     static void print_area(Shape s){
-        System.out.println(s.name()+"µÄÃæ»ıÎª"+s.area());
+        System.out.println(s.name()+"çš„é¢ç§¯ä¸º"+s.area());
     }
     public static void main(String[] args) {
         Round cir=new Round(3);
         Rectangle rec=new Rectangle(5,6);
         Square squ=new Square(5);
         Triangle tri=new Triangle(3,4);
-        System.out.println("Ò»¹²³õÊ¼»¯ÁË"+Round.times+"¸öÊôÓÚShape³éÏóÀàµÄ¶ÔÏó");
+        System.out.println("ä¸€å…±åˆå§‹åŒ–äº†"+Round.times+"ä¸ªå±äºShapeæŠ½è±¡ç±»çš„å¯¹è±¡");
         print_area(cir);
         print_area(rec);
         print_area(squ);

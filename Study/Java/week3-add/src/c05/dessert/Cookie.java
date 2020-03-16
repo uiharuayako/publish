@@ -9,7 +9,7 @@ public class Cookie {      //此处的public不能少
     }
 
     //public bite如果声明为protected则可被子类使用
-    private void bite() {
+    protected void bite() {
         System.out.println("bite");
     }
 }  // protected 
