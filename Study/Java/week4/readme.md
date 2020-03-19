@@ -22,7 +22,26 @@
 
     建模并编程实现。参考校内学院建制，建立大学教学管理信息系统基本模型，设计编写大学、校长、教师、学生、学院、院长、系、研究所、实验中心、课程等类，定义抽象类合理安排类之间的层次关系，灵活应用OOP技术，体现重载、覆盖、多态等特性。另外建立含main方法的App类测试程序。
 
-详见代码
-第三题，第四题的示例合在一个main函数里  
-第五题在另一个里，其中一些对象命名使用了中文  
+详见代码  
+
+第三题，第四题的示例合在**一个**main函数里  
+第五题在另一个里，其中**一些对象**的命名使用了**中文**  
 我知道这样不好，但是我并不知道这些单词怎么翻译
+
+## 第六题
+
+    预习Java异常处理章节。
+
+已在第三题和第四题的输入部分添加了一个异常处理模块！将Main.java中代码节选如下：  
+
+    System.out.println("1:第三题示例\n其他数字：第四题示例");
+    InputStreamReader reader=new InputStreamReader(System.in);
+    BufferedReader input=new BufferedReader(reader);
+    int cho=1;
+    String s = input.readLine();
+    try {
+        cho = Integer.parseInt(s);
+    } catch (NumberFormatException n) {
+        System.out.println("输入的不是数字！默认显示第三题示例，按回车继续");
+                int i=input.read();//实现暂停
+    }
