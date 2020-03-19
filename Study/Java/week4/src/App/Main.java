@@ -1,16 +1,25 @@
 package App;
 import classes.*;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 import static classes.BillsOfStudentsInJavaUniversity.numOfBills;
 import static classes.BillsOfStudentsInJavaUniversity.schoolFee;
 
 public class Main {
-    public static void main(String args[]){
-        System.out.println("1:第三题示例 2：第四题示例");
-        Scanner inp=new Scanner(System.in);
-        int cho=inp.nextInt();
+    public static void main(String args[]) throws Exception {
+        System.out.println("1:第三题示例\n其他数字：第四题示例");
+        InputStreamReader reader=new InputStreamReader(System.in);
+        BufferedReader input=new BufferedReader(reader);
+        int cho=1;
+        String s = input.readLine();
+        try {
+            cho = Integer.parseInt(s);
+        } catch (NumberFormatException n) {
+            System.out.println("输入的不是数字！默认显示第三题示例，按回车继续");
+            int i=input.read();//实现暂停
+        }
         //第三题的示例部分，请注意，这个链表第一个结点编号为1
         if(cho==1) {
             MyList a = new MyList();
