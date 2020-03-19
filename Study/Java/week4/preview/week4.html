@@ -1,0 +1,104 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:week4</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="-">第五周作业</h1>
+<h2 id="-">第一题</h2>
+<pre><code>什么是多态?使用多态有什么优点?如何实现？
+</code></pre><p>1.多态指同名的多个方法存在于一个项目中（函数重载）<br>2.可以提高程序的抽象性和简洁性<br>3.程序员需要设计同方法名但参数列表和实现不同的两个函数，在使用这个方法的时候，JVM会依照传入的参数调用对应的方法  </p>
+<h2 id="-">第二题</h2>
+<pre><code>有继承关系的父类对象和子类对象之间可以在一定条件下互相转换，这种转换的要遵循的原则是什么？
+</code></pre><p>父类向子类转换是向上转型，编译器自动完成这一过程。而父类向子类转换需要使用显式的强制类型转换，而且这个父类必须是子类的一个实例，可以用instanceof关键字判断。如果不是还向下转型，会报错ClassCastException</p>
+<h2 id="-">第三题，第四题，第五题</h2>
+<pre><code>创建一个称为MyList的类，它可存储任何类型的对象，并可以在任何时候增加或删除对象。
+
+为一个“Java州立大学”的学生建立账单系统，州内外的学生收费不同，州内每学分收费$75，州外为$200，每个学生的账单上有学校名称、学生姓名、信用卡使用的时间以及账单的总数，另外统计收到的学费总数。
+
+建模并编程实现。参考校内学院建制，建立大学教学管理信息系统基本模型，设计编写大学、校长、教师、学生、学院、院长、系、研究所、实验中心、课程等类，定义抽象类合理安排类之间的层次关系，灵活应用OOP技术，体现重载、覆盖、多态等特性。另外建立含main方法的App类测试程序。
+</code></pre><p>详见代码
+第三题，第四题的示例合在一个main函数里<br>第五题在另一个里，其中一些对象命名使用了中文<br>我知道这样不好，但是我并不知道这些单词怎么翻译</p>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
