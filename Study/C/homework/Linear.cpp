@@ -75,7 +75,7 @@ void Linear::printList()
 {
 	Cur = Head;
 	cout << "现在的链表：";
-	if (size == 0) { cout << "为空"; }
+	if (size == 0) { cout << "为空"<<endl; }
 	else {
 		for (int i = 0; i < size - 1; i++)
 		{
@@ -84,6 +84,12 @@ void Linear::printList()
 		}
 		cout << Cur->data << endl << "其长度：" << size << endl;
 	}
+}
+
+int Linear::getIndexData(int index)
+{
+	go(index);
+	return Cur->data;
 }
 
 int Linear::random(int a, int b)
@@ -114,7 +120,6 @@ void Linear::showOff()
 	cout << "演示删除操作：删除最后一个元素" << endl;
 	ls.remove();
 	ls.printList();
-	PAUSE
 }
 
 

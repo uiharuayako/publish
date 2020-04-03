@@ -45,7 +45,7 @@ void Queue::remove()
 {
 	if (size==0)//如果全空
 	{
-		cout << "队列全空！请先入队元素！";
+		cout << "队列全空！请先入队元素！"<<endl;
 	}
 	else
 	{
@@ -64,7 +64,7 @@ void Queue::showOff()
 		ls.add(random(1, 100));
 		ls.printList();
 	}
-	cout << endl << "试图插入第六个元素，但是失败" << endl;
+	cout << endl << "试图插入第六个元素" << endl;
 	ls.add(random(1, 100));
 	ls.printList();
 	cout << endl << "分步删除四个元素" << endl;
@@ -75,7 +75,6 @@ void Queue::showOff()
 	}
 
 	cout << endl << "我们再来插入三个元素" << endl;
-	ls.printList();
 	ls.add(random(1, 100));
 	ls.printList();
 	ls.add(random(1, 100));
@@ -88,5 +87,4 @@ void Queue::showOff()
 		ls.remove();
 		ls.printList();
 	}
-	PAUSE CLS
 }

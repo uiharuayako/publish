@@ -32,6 +32,12 @@ public:
 	void remove(int index);//移除index位置的结点，并且释放内存
 	void remove();//移除最后一个结点
 	void printList();//在控制台中打印链表
+	int getIndexData(int index);//访问第index结点的数据
+	int getSize() { return size; }//获取链表长度
+	void headCur() { Cur = Head; }//重置标识符位置
+	void nextNode() { Cur = Cur->next; }//标识符向后移一位
+	int getCurData() { return Cur->data; }//获取当前结点数据
+	bool isNull() { return Cur->next == nullptr ? true : false; }//下一个结点是否为空？
 	static int random(int a, int b);//返回a，b闭区间的随机数
 	static void showOff();//展示
 };

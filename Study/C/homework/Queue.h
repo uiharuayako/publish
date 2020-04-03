@@ -12,6 +12,6 @@ public:
 	~Queue();//析构...
 	void add(int num);//重写父类函数
 	void remove();//重写父类函数+1
-	static void showOff();//重新父类的展示方法
+	static void showOff();//重写父类的展示方法
 };
 
