@@ -35,7 +35,7 @@
           <NewMemberFileName>Graph.h</NewMemberFileName>
         </TypeIdentifier>
       </Typedef>
-      <Struct Name="Graph::VNode" Collapsed="true">
+      <Struct Name="Graph::VNode">
         <TypeIdentifier>
           <NewMemberFileName>Graph.h</NewMemberFileName>
         </TypeIdentifier>
@@ -54,7 +54,7 @@
     </TypeIdentifier>
   </Struct>
   <Typedef Name="HuffmanTree" Collapsed="true">
-    <Position X="9.25" Y="2.75" Width="1.5" />
+    <Position X="9.25" Y="2.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>main.cpp</FileName>
