@@ -17,5 +17,48 @@
       <FileName>Linear.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Queue">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAEAAQAAAAAQAgAAAAAAAACCAACAAA=</HashCode>
+      <FileName>Queue.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Graph">
+    <Position X="6.5" Y="1" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Typedef Name="Graph::AdjList" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Graph.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Struct Name="Graph::VNode" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Graph.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAADAFAAAAAAAAACgAACAAAEAAAEg=</HashCode>
+      <FileName>Graph.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="HTNode">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAIAAAgAAAAAAAAgAA=</HashCode>
+      <FileName>main.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="HuffmanTree" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>main.cpp</FileName>
+    </TypeIdentifier>
+  </Typedef>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>
