@@ -7,14 +7,14 @@ Queue::Queue(int s)
 	totSize = s;
 	Cur = Head;
 	size = 0;
-	//队列的长度是s，除了头尾结点还有s-2个节点，我想在每个节点里都储存数字
-	for (int i = 0; i < s-2; i++) {
+	//队列的长度是s，除了头结点还有s-1个节点，我想在每个节点里都储存数字
+	for (int i = 0; i < s-1; i++) {
 		NODE* tmp = new NODE();
 		Cur->next = tmp;
 		Cur = Cur->next;
 	}
 	Cur->next = Head;//首尾呼应，形成循环队列
-	Rear = Head;//头尾指向同一块内存
+	Rear = Head;//末尾的下一个指向头结点
 }
 
 Queue::~Queue()
