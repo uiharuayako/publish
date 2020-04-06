@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 Study/Java/week1/index-1.html
 test-proj/
+*.class
