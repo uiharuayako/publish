@@ -29,7 +29,7 @@
 运行(Running)、
 阻塞(Blocked)、
 终止(Finished)  
-![如图所示](线程状态.jpg)
+![如图所示](https://github.com/uiharuayako/publish/blob/master/Study/Java/week8-thread/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.jpg)
 
 ## 第四题
 
@@ -37,5 +37,5 @@
 
 如代码所示，十分感谢老师的宽限...  
 演示两个截图  
-![如图所示](1.png)  
-![如图所示](2.png)
+![如图所示](https://github.com/uiharuayako/publish/blob/master/Study/Java/week8-thread/1.png)  
+![如图所示](https://github.com/uiharuayako/publish/blob/master/Study/Java/week8-thread/2.png)
