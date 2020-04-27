@@ -10,11 +10,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
 
-public class GetNetworkTime extends Thread{
+public class GetNetworkTime implements Runnable{
     private Socket connection;
     public GetNetworkTime(Socket connection) {
         this.connection = connection;
-        start();
     }
 
     public void run() {
