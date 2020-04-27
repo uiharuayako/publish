@@ -1,7 +1,6 @@
 package homework;
 
 
-import javax.security.sasl.SaslException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,6 +13,7 @@ public class Question3Server{
             ServerSocket server = new ServerSocket(6666);
             System.out.println("建立时间服务器于端口：" + server.getLocalPort());
             ExecutorService pool= Executors.newFixedThreadPool(3);
+            System.out.println("成功建立容量为3的线程池");
             while (true) {
                 Socket connection = server.accept();
                 System.out.println("\n建立新线程完成，将与客户端连接\n");
