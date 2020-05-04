@@ -17,7 +17,6 @@ import java.sql.Statement;
 public class Question3 extends Application {
     private Connection con=null;
     private Statement stm=null;
-    private String command=null;
         @Override // Override the start method in the Application class
         public void start(Stage primaryStage) {
             try {
@@ -123,6 +122,11 @@ public class Question3 extends Application {
             HBox buttonHB=new HBox();
             Button exitBT=new Button("退出");
             exitBT.setOnAction(event -> {
+                try{
+                con.close();
+                }catch(Exception e){
+                    System.out.println("哇，关闭连接都能出错？？？？");
+                }
                 Platform.exit();
             });
             Button createBT=new Button("创建");
