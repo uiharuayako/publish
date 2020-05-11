@@ -253,6 +253,34 @@ void Cities::DFS(string city_n)
 	}
 }
 
+spRoute Cities::find_min_time_spRoute(int startCity, int endCity)
+{
+	spRoute result(startCity, endCity);
+	double min_time = route_info[startCity][0].hours;
+	int min_city = 0;
+	int tmp_start = startCity;
+	for (int j = 0; j < city_data.size(); j++) {
+		for (int i = 1; i < city_data.size(); i++) {
+			if (route_info[tmp_start][i].hours < min_time) {
+				min_time = route_info[tmp_start][i].hours;//如果有一个更小，则替换
+				min_city = i;
+			}
+		}
+		if (min_city == endCity) {
+			result.addCity(min_city, route_info[tmp_start][min_city].hours);//最短城市入栈
+			return result;//返回最短
+		}
+		//找到了路径中的一个点，但这不是整体的最短路径
+		result.addCity(min_city, route_info[tmp_start][min_city].hours);//临时最短城市入栈
+		//准备开始下一轮判断
+		tmp_start = min_city;//下一次，从之前找到的最短城市开始找
+		min_time = route_info[min_city][0].hours;//新的初始最短时间
+		min_city = 0;//初始化最短城市
+	}
+	//一般来说，执行不到这行，因为会前置判断这个城市能不能被访问。
+	return spRoute(startCity,endCity,true);
+}
+
 bool Cities::verif_consistency()
 {
 	cout << route_info[search_index("Abu Dhabi")][search_index("Lima")].length;
@@ -286,6 +314,14 @@ int Cities::countIsolated()
 		}
 	}
 	return n;
+}
+
+void Cities::print_route(spRoute spR)
+{
+	for (int i = 0; i < spR.way.size(); i++) {
+		cout << city_data[spR.way[i]].name << "-";
+	}
+	cout << endl << spR.weight;
 }
 
 void Cities::print_routes()

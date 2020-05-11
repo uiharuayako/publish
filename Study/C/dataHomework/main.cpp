@@ -2,6 +2,7 @@
 int main() {
 	Cities a;
 	a.connect_all_in_order();
+	a.print_route(a.find_min_time_spRoute(a.search_index("Beijing"), a.search_index("Tokyo")));
 	a.DFS("Tarawa");
 	cout << a.countIsolated();
 	a.print_unvisited();

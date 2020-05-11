@@ -62,8 +62,19 @@ struct spRoute {
 	int start_city;//开始的城市编号
 	int end_city;//结束的程序编号
 	double weight;//记录该路径的总权重
-	spRoute() {
+	spRoute(int start,int end) {
+		start_city = start;
+		end_city = end;
+		weight = 0;
 		way.push_back(start_city);
+	}
+	spRoute(int start, int end,bool cannot) {
+		//当无路可走，我尽量防止这种情况的产生，理论上这种情况也不会产生
+		start_city = start;
+		end_city = end;
+		way.push_back(start_city);
+		way.push_back(end_city);
+		weight = 999999999;
 	}
 	void addCity(int n,double wei) {
 		way.push_back(n);
@@ -91,11 +102,14 @@ public:
 	void connect_all_in_price();//选择时间最小的连接路线
 	void connect_all_in_time_price(double money);//按照你的一个小时值多少钱来针对性算出最适合你的路径
 	void DFS(string city_n);//深度遍历所有城市，非递归
-	spRoute find_min_spRoute(int startCity, int endCity);//返回两城市之间的最短路径
+	spRoute find_min_time_spRoute(int startCity, int endCity);//返回两城市之间的最短时间路径
+	spRoute find_min_length_spRoute(int startCity, int endCity);//返回两城市之间的最短路程路径
+	spRoute find_min_price_spRoute(int startCity, int endCity);//返回两城市之间的最低价格路径
 	bool verif_consistency();//测试用函数
 	void print_cities();//调试用，打印城市信息
 	void print_unvisited();//调试用，打印未被访问的城市的信息
 	int countIsolated();
+	void print_route(spRoute spR);
 	void print_routes();//同上
 	void print_connect();//同上
 };
