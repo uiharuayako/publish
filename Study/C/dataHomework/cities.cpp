@@ -1,5 +1,5 @@
-#include "cities.h"
-//¸¨ÖúÓÃº¯Êı
+ï»¿#include "cities.h"
+//è¾…åŠ©ç”¨å‡½æ•°
 void string2num(string str, double& num)
 {
 	stringstream ss;
@@ -26,21 +26,21 @@ void Cities::clearVisit()
 void Cities::visit(int num)
 {
 	city_data[num].isVisited = true;
-	cout << city_data[num].name << " in the " << city_data[num].country << endl;
+	cout << city_data[num].name << "-ã€‹";
 }
 Cities::Cities()
 {
-	//¶ÁÈ¡csvĞÅÏ¢£¬Ğ´ÈëÄÚ´æ
-	//³ÇÊĞĞÅÏ¢
+	//è¯»å–csvä¿¡æ¯ï¼Œå†™å…¥å†…å­˜
+	//åŸå¸‚ä¿¡æ¯
 	ifstream this_file("cities.csv");
 	string this_line;
 	for (int i = 0; getline(this_file, this_line);i++) {
 		istringstream sin(this_line);
 		City tmpCity;
-		tmpCity.id = i;//¸øid¸³Öµ
-		//¹ú¼Ò
+		tmpCity.id = i;//ç»™idèµ‹å€¼
+		//å›½å®¶
 		getline(sin, tmpCity.country,',');
-		//³ÇÊĞ
+		//åŸå¸‚
 		getline(sin, tmpCity.name, ',');
 		string tmp1, tmp2;
 		getline(sin,tmp1, ',');
@@ -51,22 +51,22 @@ Cities::Cities()
 	}
 	this_file.close();
 	int numCity = city_data.size();
-	//³õÊ¼»¯ÁÚ½Ó¾ØÕó
-	route_info = new Route_h_l*[numCity];//¶¯Ì¬¶şÎ¬Êı×é
+	//åˆå§‹åŒ–é‚»æ¥çŸ©é˜µ
+	route_info = new Route_h_l*[numCity];//åŠ¨æ€äºŒç»´æ•°ç»„
 	for (int i = 0; i < numCity; i++) {
 		route_info[i] = new Route_h_l[numCity];
 	}
 	
 	ifstream route_file("routes.csv");
 	string route_line;
-	//»ñµÃËùÓĞĞÅÏ¢
+	//è·å¾—æ‰€æœ‰ä¿¡æ¯
 	for (int i = 0; getline(route_file,route_line); i++) {
 		istringstream sin(route_line);
 		Route tmpRoute;
 		getline(sin, tmpRoute.start_city, ',');
-		city_data[search_index(tmpRoute.start_city)].neverStart = false;//Èç¹ûÕâÑù£¬¾Í²»¶ÀÁ¢
+		city_data[search_index(tmpRoute.start_city)].neverStart = false;//å¦‚æœè¿™æ ·ï¼Œå°±ä¸ç‹¬ç«‹
 		getline(sin, tmpRoute.destination_city, ',');
-		city_data[search_index(tmpRoute.destination_city)].neverReturn = false;//Èç¹ûÕâÑù£¬¾Í²»¶ÀÁ¢
+		city_data[search_index(tmpRoute.destination_city)].neverReturn = false;//å¦‚æœè¿™æ ·ï¼Œå°±ä¸ç‹¬ç«‹
 		getline(sin, tmpRoute.way_to_travel, ',');
 		string tmp1, tmp2;
 		getline(sin, tmp1, ',');
@@ -84,7 +84,7 @@ Cities::Cities()
 		routes.push_back(tmpRoute);
 	}
 	for (int i = 0; i < city_data.size(); i++) {
-		city_data[i].isIsolated = city_data[i].neverReturn && city_data[i].neverStart;//Èç¹ûÒ»¸ö³ÇÊĞ¼È²»ÊÇÈÎºÎÆğµãÒ²²»ÊÇÈÎºÎÖÕµã
+		city_data[i].isIsolated = city_data[i].neverReturn && city_data[i].neverStart;//å¦‚æœä¸€ä¸ªåŸå¸‚æ—¢ä¸æ˜¯ä»»ä½•èµ·ç‚¹ä¹Ÿä¸æ˜¯ä»»ä½•ç»ˆç‚¹
 	}
 	this_file.close();
 }
@@ -116,21 +116,22 @@ bool Cities::is_connected_name(string city1, string city2)
 
 void Cities::connect_all_in_order()
 {
-	//ÓĞ¶àÉÙÌõÂ·£¬±éÀú¶àÉÙ´Î
-	//ÕâÊÇÒ»¸ö½«routesÖĞµÄĞÅÏ¢×°ÔØµ½¶şÎ¬Êı×éÖĞµÄ¹ı³Ì
+	//æœ‰å¤šå°‘æ¡è·¯ï¼Œéå†å¤šå°‘æ¬¡
+	//è¿™æ˜¯ä¸€ä¸ªå°†routesä¸­çš„ä¿¡æ¯è£…è½½åˆ°äºŒç»´æ•°ç»„ä¸­çš„è¿‡ç¨‹
 	for (int i = 0; i < routes.size(); i++) {
-		int start_city = search_index(routes[i].start_city);//»ñÈ¡¿ªÊ¼µÄ³ÇÊĞºÅ
-		int des_city = search_index(routes[i].destination_city);//»ñÈ¡½áÊøµÄ³ÇÊĞºÅ
+		int start_city = search_index(routes[i].start_city);//è·å–å¼€å§‹çš„åŸå¸‚å·
+		int des_city = search_index(routes[i].destination_city);//è·å–ç»“æŸçš„åŸå¸‚å·
 		if (start_city == -1 || des_city == -1) {
-			cout << "³ÌĞòÖĞ¶Ï£¬¼ìË÷µ½´íÎóµÄ³ÇÊĞ£¡\n´íÎóÎ»ÖÃ£ºroutes.csvµÄµÚ" << i << "ĞĞ" << endl;
+			cout << "ç¨‹åºä¸­æ–­ï¼Œæ£€ç´¢åˆ°é”™è¯¯çš„åŸå¸‚ï¼\né”™è¯¯ä½ç½®ï¼šroutes.csvçš„ç¬¬" << i << "è¡Œ" << endl;
 			system("pause");
 		}
 		if (!route_info[start_city][des_city].isConnected) {
-			route_info[start_city][des_city].isConnected = true;//½¨Á¢Á¬½Ó
-			route_info[start_city][des_city].hours = routes[i].hours;//¶ÁÈ¡Ê±¼ä
-			route_info[start_city][des_city].price = routes[i].price;//¶ÁÈ¡¼Û¸ñ
-			route_info[start_city][des_city].way = routes[i].way_to_travel;//¶ÁÈ¡½»Í¨·½Ê½
-			route_info[start_city][des_city].length = routes[i].length;//¶ÁÈ¡¾àÀë
+			route_info[start_city][des_city].isConnected = true;//å»ºç«‹è¿æ¥
+			route_info[start_city][des_city].hours = routes[i].hours;//è¯»å–æ—¶é—´
+			route_info[start_city][des_city].price = routes[i].price;//è¯»å–ä»·æ ¼
+			route_info[start_city][des_city].way = routes[i].way_to_travel;//è¯»å–äº¤é€šæ–¹å¼
+			route_info[start_city][des_city].length = routes[i].length;//è¯»å–è·ç¦»
+			route_info[start_city][des_city].info = routes[i].info;//è¯»å–ä¿¡æ¯
 		}
 	}
 }
@@ -138,29 +139,31 @@ void Cities::connect_all_in_order()
 void Cities::connect_all_in_time()
 {
 	int start_city, des_city;
-	//ÓĞ¶àÉÙÌõÂ·£¬±éÀú¶àÉÙ´Î
-	//ÕâÊÇÒ»¸ö½«routesÖĞµÄĞÅÏ¢×°ÔØµ½¶şÎ¬Êı×éÖĞµÄ¹ı³Ì
+	//æœ‰å¤šå°‘æ¡è·¯ï¼Œéå†å¤šå°‘æ¬¡
+	//è¿™æ˜¯ä¸€ä¸ªå°†routesä¸­çš„ä¿¡æ¯è£…è½½åˆ°äºŒç»´æ•°ç»„ä¸­çš„è¿‡ç¨‹
 	for (int i = 0; i < routes.size(); i++) {
-		start_city = search_index(routes[i].start_city);//»ñÈ¡¿ªÊ¼µÄ³ÇÊĞºÅ
-		des_city = search_index(routes[i].destination_city);//»ñÈ¡½áÊøµÄ³ÇÊĞºÅ
+		start_city = search_index(routes[i].start_city);//è·å–å¼€å§‹çš„åŸå¸‚å·
+		des_city = search_index(routes[i].destination_city);//è·å–ç»“æŸçš„åŸå¸‚å·
 		if (start_city == -1 || des_city == -1) {
-			cout << "³ÌĞòÖĞ¶Ï£¬¼ìË÷µ½´íÎóµÄ³ÇÊĞ£¡\n´íÎóÎ»ÖÃ£ºroutes.csvµÄµÚ" << i << "ĞĞ" << endl << "Çë¼ì²éÊı¾İºóÖØĞÂÔËĞĞ£¬°´ÏÂ»Ø³µºöÊÓ´íÎó¼ÌĞøÔËĞĞ" << endl;
+			cout << "ç¨‹åºä¸­æ–­ï¼Œæ£€ç´¢åˆ°é”™è¯¯çš„åŸå¸‚ï¼\né”™è¯¯ä½ç½®ï¼šroutes.csvçš„ç¬¬" << i << "è¡Œ" << endl << "è¯·æ£€æŸ¥æ•°æ®åé‡æ–°è¿è¡Œï¼ŒæŒ‰ä¸‹å›è½¦å¿½è§†é”™è¯¯ç»§ç»­è¿è¡Œ" << endl;
 			system("pause");
 		}
 		if (!route_info[start_city][des_city].isConnected) {
-			route_info[start_city][des_city].isConnected = true;//½¨Á¢Á¬½Ó
-			route_info[start_city][des_city].hours = routes[i].hours;//¶ÁÈ¡Ê±¼ä
-			route_info[start_city][des_city].price = routes[i].price;//¶ÁÈ¡¼Û¸ñ
-			route_info[start_city][des_city].way = routes[i].way_to_travel;//¶ÁÈ¡½»Í¨·½Ê½
-			route_info[start_city][des_city].length = routes[i].length;//¶ÁÈ¡¾àÀë
+			route_info[start_city][des_city].isConnected = true;//å»ºç«‹è¿æ¥
+			route_info[start_city][des_city].hours = routes[i].hours;//è¯»å–æ—¶é—´
+			route_info[start_city][des_city].price = routes[i].price;//è¯»å–ä»·æ ¼
+			route_info[start_city][des_city].way = routes[i].way_to_travel;//è¯»å–äº¤é€šæ–¹å¼
+			route_info[start_city][des_city].length = routes[i].length;//è¯»å–è·ç¦»
+			route_info[start_city][des_city].info = routes[i].info;//è¯»å–ä¿¡æ¯
 		}
 		else {
 			if (routes[i].hours < route_info[start_city][des_city].hours) {
-				//ÅĞ¶Ï£¬Èç¹ûÎÄ¼şÖĞÂ·¾¶Ê±¼ä±ÈÄÚ´æÖĞ¼ÇÂ¼µÄ¸ü¶Ì£¬Ôò½øĞĞÌæ»»
-				route_info[start_city][des_city].hours = routes[i].hours;//¶ÁÈ¡Ê±¼ä
-				route_info[start_city][des_city].price = routes[i].price;//¶ÁÈ¡¼Û¸ñ
-				route_info[start_city][des_city].way = routes[i].way_to_travel;//¶ÁÈ¡½»Í¨·½Ê½
-				route_info[start_city][des_city].length = routes[i].length;//¶ÁÈ¡¾àÀë
+				//åˆ¤æ–­ï¼Œå¦‚æœæ–‡ä»¶ä¸­è·¯å¾„æ—¶é—´æ¯”å†…å­˜ä¸­è®°å½•çš„æ›´çŸ­ï¼Œåˆ™è¿›è¡Œæ›¿æ¢
+				route_info[start_city][des_city].hours = routes[i].hours;//è¯»å–æ—¶é—´
+				route_info[start_city][des_city].price = routes[i].price;//è¯»å–ä»·æ ¼
+				route_info[start_city][des_city].way = routes[i].way_to_travel;//è¯»å–äº¤é€šæ–¹å¼
+				route_info[start_city][des_city].length = routes[i].length;//è¯»å–è·ç¦»
+				route_info[start_city][des_city].info = routes[i].info;//è¯»å–ä¿¡æ¯
 			}
 		}
 	}
@@ -169,29 +172,31 @@ void Cities::connect_all_in_time()
 void Cities::connect_all_in_price()
 {
 	int start_city, des_city;
-	//ÓĞ¶àÉÙÌõÂ·£¬±éÀú¶àÉÙ´Î
-	//ÕâÊÇÒ»¸ö½«routesÖĞµÄĞÅÏ¢×°ÔØµ½¶şÎ¬Êı×éÖĞµÄ¹ı³Ì
+	//æœ‰å¤šå°‘æ¡è·¯ï¼Œéå†å¤šå°‘æ¬¡
+	//è¿™æ˜¯ä¸€ä¸ªå°†routesä¸­çš„ä¿¡æ¯è£…è½½åˆ°äºŒç»´æ•°ç»„ä¸­çš„è¿‡ç¨‹
 	for (int i = 0; i < routes.size(); i++) {
-		start_city = search_index(routes[i].start_city);//»ñÈ¡¿ªÊ¼µÄ³ÇÊĞºÅ
-		des_city = search_index(routes[i].destination_city);//»ñÈ¡½áÊøµÄ³ÇÊĞºÅ
+		start_city = search_index(routes[i].start_city);//è·å–å¼€å§‹çš„åŸå¸‚å·
+		des_city = search_index(routes[i].destination_city);//è·å–ç»“æŸçš„åŸå¸‚å·
 		if (start_city == -1 || des_city == -1) {
-			cout << "³ÌĞòÖĞ¶Ï£¬¼ìË÷µ½´íÎóµÄ³ÇÊĞ£¡\n´íÎóÎ»ÖÃ£ºroutes.csvµÄµÚ" << i << "ĞĞ" << endl << "Çë¼ì²éÊı¾İºóÖØĞÂÔËĞĞ£¬°´ÏÂ»Ø³µºöÊÓ´íÎó¼ÌĞøÔËĞĞ" << endl;
+			cout << "ç¨‹åºä¸­æ–­ï¼Œæ£€ç´¢åˆ°é”™è¯¯çš„åŸå¸‚ï¼\né”™è¯¯ä½ç½®ï¼šroutes.csvçš„ç¬¬" << i << "è¡Œ" << endl << "è¯·æ£€æŸ¥æ•°æ®åé‡æ–°è¿è¡Œï¼ŒæŒ‰ä¸‹å›è½¦å¿½è§†é”™è¯¯ç»§ç»­è¿è¡Œ" << endl;
 			system("pause");
 		}
 		if (!route_info[start_city][des_city].isConnected) {
-			route_info[start_city][des_city].isConnected = true;//½¨Á¢Á¬½Ó
-			route_info[start_city][des_city].hours = routes[i].hours;//¶ÁÈ¡Ê±¼ä
-			route_info[start_city][des_city].price = routes[i].price;//¶ÁÈ¡¼Û¸ñ
-			route_info[start_city][des_city].way = routes[i].way_to_travel;//¶ÁÈ¡½»Í¨·½Ê½
-			route_info[start_city][des_city].length = routes[i].length;//¶ÁÈ¡¾àÀë
+			route_info[start_city][des_city].isConnected = true;//å»ºç«‹è¿æ¥
+			route_info[start_city][des_city].hours = routes[i].hours;//è¯»å–æ—¶é—´
+			route_info[start_city][des_city].price = routes[i].price;//è¯»å–ä»·æ ¼
+			route_info[start_city][des_city].way = routes[i].way_to_travel;//è¯»å–äº¤é€šæ–¹å¼
+			route_info[start_city][des_city].length = routes[i].length;//è¯»å–è·ç¦»
+			route_info[start_city][des_city].info = routes[i].info;//è¯»å–ä¿¡æ¯
 		}
 		else {
 			if (routes[i].price < route_info[start_city][des_city].price) {
-				//ÅĞ¶Ï£¬Èç¹ûÎÄ¼şÖĞ¼Û¸ñ±ÈÄÚ´æÖĞ¼ÇÂ¼µÄ¸ü±ãÒË£¬Ôò½øĞĞÌæ»»
-				route_info[start_city][des_city].hours = routes[i].hours;//¶ÁÈ¡Ê±¼ä
-				route_info[start_city][des_city].price = routes[i].price;//¶ÁÈ¡¼Û¸ñ
-				route_info[start_city][des_city].way = routes[i].way_to_travel;//¶ÁÈ¡½»Í¨·½Ê½
-				route_info[start_city][des_city].length = routes[i].length;//¶ÁÈ¡¾àÀë
+				//åˆ¤æ–­ï¼Œå¦‚æœæ–‡ä»¶ä¸­ä»·æ ¼æ¯”å†…å­˜ä¸­è®°å½•çš„æ›´ä¾¿å®œï¼Œåˆ™è¿›è¡Œæ›¿æ¢
+				route_info[start_city][des_city].hours = routes[i].hours;//è¯»å–æ—¶é—´
+				route_info[start_city][des_city].price = routes[i].price;//è¯»å–ä»·æ ¼
+				route_info[start_city][des_city].way = routes[i].way_to_travel;//è¯»å–äº¤é€šæ–¹å¼
+				route_info[start_city][des_city].length = routes[i].length;//è¯»å–è·ç¦»
+				route_info[start_city][des_city].info = routes[i].info;//è¯»å–ä¿¡æ¯
 			}
 		}
 	}
@@ -200,29 +205,31 @@ void Cities::connect_all_in_price()
 void Cities::connect_all_in_time_price(double money)
 {
 	int start_city, des_city;
-	//ÓĞ¶àÉÙÌõÂ·£¬±éÀú¶àÉÙ´Î
-	//ÕâÊÇÒ»¸ö½«routesÖĞµÄĞÅÏ¢×°ÔØµ½¶şÎ¬Êı×éÖĞµÄ¹ı³Ì
+	//æœ‰å¤šå°‘æ¡è·¯ï¼Œéå†å¤šå°‘æ¬¡
+	//è¿™æ˜¯ä¸€ä¸ªå°†routesä¸­çš„ä¿¡æ¯è£…è½½åˆ°äºŒç»´æ•°ç»„ä¸­çš„è¿‡ç¨‹
 	for (int i = 0; i < routes.size(); i++) {
-		start_city = search_index(routes[i].start_city);//»ñÈ¡¿ªÊ¼µÄ³ÇÊĞºÅ
-		des_city = search_index(routes[i].destination_city);//»ñÈ¡½áÊøµÄ³ÇÊĞºÅ
+		start_city = search_index(routes[i].start_city);//è·å–å¼€å§‹çš„åŸå¸‚å·
+		des_city = search_index(routes[i].destination_city);//è·å–ç»“æŸçš„åŸå¸‚å·
 		if (start_city == -1 || des_city == -1) {
-			cout << "³ÌĞòÖĞ¶Ï£¬¼ìË÷µ½´íÎóµÄ³ÇÊĞ£¡\n´íÎóÎ»ÖÃ£ºroutes.csvµÄµÚ" << i << "ĞĞ" << endl << "Çë¼ì²éÊı¾İºóÖØĞÂÔËĞĞ£¬°´ÏÂ»Ø³µºöÊÓ´íÎó¼ÌĞøÔËĞĞ" << endl;
+			cout << "ç¨‹åºä¸­æ–­ï¼Œæ£€ç´¢åˆ°é”™è¯¯çš„åŸå¸‚ï¼\né”™è¯¯ä½ç½®ï¼šroutes.csvçš„ç¬¬" << i << "è¡Œ" << endl << "è¯·æ£€æŸ¥æ•°æ®åé‡æ–°è¿è¡Œï¼ŒæŒ‰ä¸‹å›è½¦å¿½è§†é”™è¯¯ç»§ç»­è¿è¡Œ" << endl;
 			system("pause");
 		}
 		if (!route_info[start_city][des_city].isConnected) {
-			route_info[start_city][des_city].isConnected = true;//½¨Á¢Á¬½Ó
-			route_info[start_city][des_city].hours = routes[i].hours;//¶ÁÈ¡Ê±¼ä
-			route_info[start_city][des_city].price = routes[i].price;//¶ÁÈ¡¼Û¸ñ
-			route_info[start_city][des_city].way = routes[i].way_to_travel;//¶ÁÈ¡½»Í¨·½Ê½
-			route_info[start_city][des_city].length = routes[i].length;//¶ÁÈ¡¾àÀë
+			route_info[start_city][des_city].isConnected = true;//å»ºç«‹è¿æ¥
+			route_info[start_city][des_city].hours = routes[i].hours;//è¯»å–æ—¶é—´
+			route_info[start_city][des_city].price = routes[i].price;//è¯»å–ä»·æ ¼
+			route_info[start_city][des_city].way = routes[i].way_to_travel;//è¯»å–äº¤é€šæ–¹å¼
+			route_info[start_city][des_city].length = routes[i].length;//è¯»å–è·ç¦»
+			route_info[start_city][des_city].info = routes[i].info;//è¯»å–ä¿¡æ¯
 		}
 		else {
 			if (routes[i].price + routes[i].hours*money < route_info[start_city][des_city].price+ route_info[start_city][des_city].hours+money) {
-				//ÅĞ¶Ï£¬Èç¹ûÎÄ¼şÖĞ¼Û¸ñ±ÈÄÚ´æÖĞ¼ÇÂ¼µÄ½áºÏÈ¨ÖØ¸ü±ãÒË£¬ÔòÌæ»»¡£Ïàµ±ÓÚËãÁË¸öÂ·ÉÏµÄÎó¹¤·Ñ
-				route_info[start_city][des_city].hours = routes[i].hours;//¶ÁÈ¡Ê±¼ä
-				route_info[start_city][des_city].price = routes[i].price;//¶ÁÈ¡¼Û¸ñ
-				route_info[start_city][des_city].way = routes[i].way_to_travel;//¶ÁÈ¡½»Í¨·½Ê½
-				route_info[start_city][des_city].length = routes[i].length;//¶ÁÈ¡¾àÀë
+				//åˆ¤æ–­ï¼Œå¦‚æœæ–‡ä»¶ä¸­ä»·æ ¼æ¯”å†…å­˜ä¸­è®°å½•çš„ç»“åˆæƒé‡æ›´ä¾¿å®œï¼Œåˆ™æ›¿æ¢ã€‚ç›¸å½“äºç®—äº†ä¸ªè·¯ä¸Šçš„è¯¯å·¥è´¹
+				route_info[start_city][des_city].hours = routes[i].hours;//è¯»å–æ—¶é—´
+				route_info[start_city][des_city].price = routes[i].price;//è¯»å–ä»·æ ¼
+				route_info[start_city][des_city].way = routes[i].way_to_travel;//è¯»å–äº¤é€šæ–¹å¼
+				route_info[start_city][des_city].length = routes[i].length;//è¯»å–è·ç¦»
+				route_info[start_city][des_city].info = routes[i].info;//è¯»å–ä¿¡æ¯
 			}
 		}
 	}
@@ -231,54 +238,172 @@ void Cities::connect_all_in_time_price(double money)
 void Cities::DFS(string city_n)
 {
 	int ves = search_index(city_n);
-	clearVisit();//Çå¿Õ·ÃÎÊĞÅÏ¢
+	clearVisit();//æ¸…ç©ºè®¿é—®ä¿¡æ¯
 	stack<City> s;
 	visit(ves);
 	s.push(city_data[ves]);
 	City tmpCity;
 	while (!s.empty()) {
-		tmpCity = s.top();//È¡ÁÙÊ±±äÁ¿ÎªÕ»¶¥
+		tmpCity = s.top();//å–ä¸´æ—¶å˜é‡ä¸ºæ ˆé¡¶
 		int i;
 		for (i = 0; i < city_data.size(); i++) {
 			if (route_info[tmpCity.id][i].isConnected && !city_data[i].isVisited) {
-				//Èç¹û£¬Á½³ÇÊĞÏàÁ¬£¬ÇÒ³ÇÊĞiÎ´±»·ÃÎÊ¹ı
+				//å¦‚æœï¼Œä¸¤åŸå¸‚ç›¸è¿ï¼Œä¸”åŸå¸‚iæœªè¢«è®¿é—®è¿‡
 				visit(i);
-				s.push(city_data[i]);//iÈëÕ»
-				break;//Ìø³öÕâ¸öforÑ­»·£¬ÒòÎªÊÇÉî¶È±éÀú£¬ÏÖÔÚÒªÉî¶È±éÀúi
+				s.push(city_data[i]);//iå…¥æ ˆ
+				break;//è·³å‡ºè¿™ä¸ªforå¾ªç¯ï¼Œå› ä¸ºæ˜¯æ·±åº¦éå†ï¼Œç°åœ¨è¦æ·±åº¦éå†i
 			}
 		}
 		if (i == city_data.size()) {
-			s.pop();//Èç¹ûµ½ÁË³ÇÊĞÊı¾İµÄÄ©Î²£¬Ôòµ¯³öÄ©Î²µÄÊı¾İ£¬Õ»ÊÇLIFO½á¹¹£¬ºó½øÏÈ³ö
+			s.pop();//å¦‚æœåˆ°äº†åŸå¸‚æ•°æ®çš„æœ«å°¾ï¼Œåˆ™å¼¹å‡ºæœ«å°¾çš„æ•°æ®ï¼Œæ ˆæ˜¯LIFOç»“æ„ï¼Œåè¿›å…ˆå‡º
 		}
 	}
 }
 
 spRoute Cities::find_min_time_spRoute(int startCity, int endCity)
 {
-	spRoute result(startCity, endCity);
-	double min_time = route_info[startCity][0].hours;
-	int min_city = 0;
-	int tmp_start = startCity;
-	for (int j = 0; j < city_data.size(); j++) {
-		for (int i = 1; i < city_data.size(); i++) {
-			if (route_info[tmp_start][i].hours < min_time) {
-				min_time = route_info[tmp_start][i].hours;//Èç¹ûÓĞÒ»¸ö¸üĞ¡£¬ÔòÌæ»»
-				min_city = i;
+	vector<spRoute> allRoute;
+	//åˆå§‹åŒ–æ‰€æœ‰è·¯å¾„
+	for (int i = 0; i < city_data.size(); i++) {
+		spRoute tmpRoute(startCity, i);
+		tmpRoute.addCity(i, route_info[startCity][i].hours);
+		allRoute.push_back(tmpRoute);
+	}
+	//å°†æ‰€æœ‰åŸå¸‚ç½®äºéè®¿é—®çŠ¶æ€
+	clearVisit();
+	city_data[startCity].isVisited = true;//è®¿é—®ç¬¬ä¸€ä¸ªåŸå¸‚
+	double min_cost;//æœ€ä½æƒé‡
+	int min_city;//æœ€çŸ­åŸå¸‚çš„ä¸‹æ ‡
+	//ä¸»å¾ªç¯
+	for (int i = 1; i < city_data.size(); i++) {
+		min_cost = 99999;
+		for (int j = 0; j < city_data.size(); j++) {
+			//ç¡®ä¿è¯¥åŸå¸‚æœªè¢«è®¿é—®ï¼Œä¸”å½“èµ·å§‹åŸå¸‚åˆ°è¯¥åŸå¸‚çš„è·ç¦»æ¯”å½“å‰çš„min_costæ›´å°æ—¶ï¼ˆè¿™ä¸ªå¾ªç¯æ—¨åœ¨æ‰¾åˆ°å·²çŸ¥çš„æœ€çŸ­è·¯å¾„
+			if (city_data[j].isVisited == false && allRoute[j].weight < min_cost) {
+				min_city = j;//æ–°çš„ä¸´æ—¶æœ€çŸ­åŸå¸‚
+				min_cost = allRoute[j].weight;
 			}
 		}
-		if (min_city == endCity) {
-			result.addCity(min_city, route_info[tmp_start][min_city].hours);//×î¶Ì³ÇÊĞÈëÕ»
-			return result;//·µ»Ø×î¶Ì
+		//æ‰¾åˆ°äº†å½“å‰æœ€çŸ­åŸå¸‚ï¼Œè®¿é—®
+		city_data[min_city].isVisited = true;
+		for (int j = 0; j < city_data.size(); j++) {
+			//å¦‚æœæœªè¢«è®¿é—®ï¼Œæœ‰è¿æ¥ï¼Œä¸”ç»è¿‡min_cityè®¿é—®è¿™ä¸ªåŸå¸‚è·¯å¾„æ›´çŸ­
+			if (city_data[j].isVisited == false 
+				&& route_info[min_city][j].isConnected 
+				&& route_info[min_city][j].hours + min_cost < allRoute[j].weight) {
+				allRoute[j].weight = route_info[min_city][j].hours + min_cost;//æ–°çš„æƒé‡
+				allRoute[j] = allRoute[min_city];//æŠŠå½“å‰æœ€çŸ­åŸå¸‚ç»™è¦æ±‚çš„æœ€çŸ­è·¯å¾„
+				allRoute[j].addCity(j, route_info[min_city][j].hours);//è¿æ¥ä¸Šæœ€åä¸€æ®µè·¯
+			}
 		}
-		//ÕÒµ½ÁËÂ·¾¶ÖĞµÄÒ»¸öµã£¬µ«Õâ²»ÊÇÕûÌåµÄ×î¶ÌÂ·¾¶
-		result.addCity(min_city, route_info[tmp_start][min_city].hours);//ÁÙÊ±×î¶Ì³ÇÊĞÈëÕ»
-		//×¼±¸¿ªÊ¼ÏÂÒ»ÂÖÅĞ¶Ï
-		tmp_start = min_city;//ÏÂÒ»´Î£¬´ÓÖ®Ç°ÕÒµ½µÄ×î¶Ì³ÇÊĞ¿ªÊ¼ÕÒ
-		min_time = route_info[min_city][0].hours;//ĞÂµÄ³õÊ¼×î¶ÌÊ±¼ä
-		min_city = 0;//³õÊ¼»¯×î¶Ì³ÇÊĞ
 	}
-	//Ò»°ãÀ´Ëµ£¬Ö´ĞĞ²»µ½ÕâĞĞ£¬ÒòÎª»áÇ°ÖÃÅĞ¶ÏÕâ¸ö³ÇÊĞÄÜ²»ÄÜ±»·ÃÎÊ¡£
-	return spRoute(startCity,endCity,true);
+	return allRoute[endCity];
+}
+
+spRoute Cities::find_min_length_spRoute(int startCity, int endCity)
+{
+	vector<spRoute> allRoute;
+	//åˆå§‹åŒ–æ‰€æœ‰è·¯å¾„
+	for (int i = 0; i < city_data.size(); i++) {
+		spRoute tmpRoute(startCity, i);
+		tmpRoute.addCity(i, route_info[startCity][i].length);
+		allRoute.push_back(tmpRoute);
+	}
+	//å°†æ‰€æœ‰åŸå¸‚ç½®äºéè®¿é—®çŠ¶æ€
+	clearVisit();
+	city_data[startCity].isVisited = true;//è®¿é—®ç¬¬ä¸€ä¸ªåŸå¸‚
+	double min_cost;//æœ€ä½æƒé‡
+	int min_city;//æœ€çŸ­åŸå¸‚çš„ä¸‹æ ‡
+	//ä¸»å¾ªç¯
+	for (int i = 1; i < city_data.size(); i++) {
+		min_cost = 99999;
+		for (int j = 0; j < city_data.size(); j++) {
+			//ç¡®ä¿è¯¥åŸå¸‚æœªè¢«è®¿é—®ï¼Œä¸”å½“èµ·å§‹åŸå¸‚åˆ°è¯¥åŸå¸‚çš„è·ç¦»æ¯”å½“å‰çš„min_costæ›´å°æ—¶ï¼ˆè¿™ä¸ªå¾ªç¯æ—¨åœ¨æ‰¾åˆ°å·²çŸ¥çš„æœ€çŸ­è·¯å¾„
+			if (city_data[j].isVisited == false && allRoute[j].weight < min_cost) {
+				min_city = j;//æ–°çš„ä¸´æ—¶æœ€çŸ­åŸå¸‚
+				min_cost = allRoute[j].weight;
+			}
+		}
+		//æ‰¾åˆ°äº†å½“å‰æœ€çŸ­åŸå¸‚ï¼Œè®¿é—®
+		city_data[min_city].isVisited = true;
+		for (int j = 0; j < city_data.size(); j++) {
+			//å¦‚æœæœªè¢«è®¿é—®ï¼Œæœ‰è¿æ¥ï¼Œä¸”ç»è¿‡min_cityè®¿é—®è¿™ä¸ªåŸå¸‚è·¯å¾„æ›´çŸ­
+			if (city_data[j].isVisited == false
+				&& route_info[min_city][j].isConnected
+				&& route_info[min_city][j].length + min_cost < allRoute[j].weight) {
+				allRoute[j].weight = route_info[min_city][j].length + min_cost;//æ–°çš„æƒé‡
+				allRoute[j] = allRoute[min_city];//æŠŠå½“å‰æœ€çŸ­åŸå¸‚ç»™è¦æ±‚çš„æœ€çŸ­è·¯å¾„
+				allRoute[j].addCity(j, route_info[min_city][j].length);//è¿æ¥ä¸Šæœ€åä¸€æ®µè·¯
+			}
+		}
+	}
+	return allRoute[endCity];
+}
+
+spRoute Cities::find_min_price_spRoute(int startCity, int endCity)
+{
+	vector<spRoute> allRoute;
+	//åˆå§‹åŒ–æ‰€æœ‰è·¯å¾„
+	for (int i = 0; i < city_data.size(); i++) {
+		spRoute tmpRoute(startCity, i);
+		tmpRoute.addCity(i, route_info[startCity][i].price);
+		allRoute.push_back(tmpRoute);
+	}
+	//å°†æ‰€æœ‰åŸå¸‚ç½®äºéè®¿é—®çŠ¶æ€
+	clearVisit();
+	city_data[startCity].isVisited = true;//è®¿é—®ç¬¬ä¸€ä¸ªåŸå¸‚
+	double min_cost;//æœ€ä½æƒé‡
+	int min_city;//æœ€çŸ­åŸå¸‚çš„ä¸‹æ ‡
+	//ä¸»å¾ªç¯
+	for (int i = 1; i < city_data.size(); i++) {
+		min_cost = 99999;
+		for (int j = 0; j < city_data.size(); j++) {
+			//ç¡®ä¿è¯¥åŸå¸‚æœªè¢«è®¿é—®ï¼Œä¸”å½“èµ·å§‹åŸå¸‚åˆ°è¯¥åŸå¸‚çš„è·ç¦»æ¯”å½“å‰çš„min_costæ›´å°æ—¶ï¼ˆè¿™ä¸ªå¾ªç¯æ—¨åœ¨æ‰¾åˆ°å·²çŸ¥çš„æœ€çŸ­è·¯å¾„
+			if (city_data[j].isVisited == false && allRoute[j].weight < min_cost) {
+				min_city = j;//æ–°çš„ä¸´æ—¶æœ€çŸ­åŸå¸‚
+				min_cost = allRoute[j].weight;
+			}
+		}
+		//æ‰¾åˆ°äº†å½“å‰æœ€çŸ­åŸå¸‚ï¼Œè®¿é—®
+		city_data[min_city].isVisited = true;
+		for (int j = 0; j < city_data.size(); j++) {
+			//å¦‚æœæœªè¢«è®¿é—®ï¼Œæœ‰è¿æ¥ï¼Œä¸”ç»è¿‡min_cityè®¿é—®è¿™ä¸ªåŸå¸‚è·¯å¾„æ›´çŸ­
+			if (city_data[j].isVisited == false
+				&& route_info[min_city][j].isConnected
+				&& route_info[min_city][j].price + min_cost < allRoute[j].weight) {
+				allRoute[j].weight = route_info[min_city][j].price + min_cost;//æ–°çš„æƒé‡
+				allRoute[j] = allRoute[min_city];//æŠŠå½“å‰æœ€çŸ­åŸå¸‚ç»™è¦æ±‚çš„æœ€çŸ­è·¯å¾„
+				allRoute[j].addCity(j, route_info[min_city][j].price);//è¿æ¥ä¸Šæœ€åä¸€æ®µè·¯
+			}
+		}
+	}
+	return allRoute[endCity];
+}
+
+void Cities::draw_route_in_map(spRoute route)
+{
+	ofstream myGraph;
+	myGraph.open("graph.htm", ios_base::out);
+	myGraph << "<!DOCTYPE html><html><head><style type='text/css'>body, html{width: 100%;height: 100%;margin:0;font-family:'å¾®è½¯é›…é»‘';}#allmap{height:100%;width:100%;}#r-result{width:100%;}</style><script type='text/javascript' src='http://api.map.baidu.com/api?v=2.0&ak=nSxiPohfziUaCuONe4ViUP2N'></script><title>Shortest path</title></head><body><div id='allmap'></div></div></body></html><script type='text/javascript'>" << endl;
+	myGraph << "var map = new BMap.Map('allmap');" << endl;
+	myGraph << "var point = new BMap.Point(0, 0);map.centerAndZoom(point, 2);map.enableScrollWheelZoom(true);" << endl;
+	myGraph << "var marker0 = new BMap.Marker(new BMap.Point(" + to_string(city_data[route.way[0]].longitude) + ", " + to_string(city_data[route.way[0]].latitude) + "));map.addOverlay(marker0);" << endl;
+	myGraph << "var infoWindow0 = new BMap.InfoWindow(\"<p style = 'font-size:14px;'>country: " + city_data[route.way[0]].country + "<br/>city: " + city_data[route.way[0]].name + "</p>\");marker0.addEventListener(\"click\", function(){this.openInfoWindow(infoWindow0);}); " << endl << endl;
+	for (int i = 1; i < route.way.size(); i++) {
+		myGraph << "var marker" + to_string(i) + " = new BMap.Marker(new BMap.Point(" + to_string(city_data[route.way[i]].longitude) + ", " + to_string(city_data[route.way[i]].latitude) + "));map.addOverlay(marker" + to_string(i) + ");" << endl;
+		myGraph << "var infoWindow" + to_string(i) + " = new BMap.InfoWindow(\"<p style = 'font-size:14px;'>country: " + city_data[route.way[i]].country + "<br/>city: " + city_data[route.way[i]].name + "</p>\");marker" + to_string(i) + ".addEventListener(\"click\", function(){this.openInfoWindow(infoWindow" + to_string(i) + ");}); " << endl;
+		myGraph << "var contentString0" + to_string(i) + " = '"+way_in_one_sentense(route.way[i-1], route.way[i])+"';" << endl;
+		myGraph << "var path" + to_string(i) + " = new BMap.Polyline([new BMap.Point(" + to_string(city_data[route.way[i-1]].longitude) + ", " + to_string(city_data[route.way[i-1]].latitude) + "),new BMap.Point(" + to_string(city_data[route.way[i]].longitude) + ", " + to_string(city_data[route.way[i]].latitude) + ")], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path" + to_string(i) + ");path" + to_string(i) + ".addEventListener(\"click\", function(){alert(contentString0" + to_string(i) + ");});" << endl;
+		myGraph << endl;
+	}
+	myGraph << "</script>";
+
+}
+
+string Cities::way_in_one_sentense(int start, int end)
+{
+	Route_h_l thisRoute = route_info[start][end];
+	return "ä¹˜å" + thisRoute.way + "ï¼Œä»" + city_data[start].country + "çš„" + city_data[start].name + "ï¼Œåˆ°" + city_data[end].country + "çš„" + city_data[end].name + "å…±ç”¨æ—¶" + to_string(thisRoute.hours) + "ï¼ŒèŠ±è´¹äº†" + to_string(thisRoute.price) + "ç¾å…ƒã€‚" + "æ›´å¤šä¿¡æ¯ï¼š" + thisRoute.info;
 }
 
 bool Cities::verif_consistency()
@@ -318,10 +443,11 @@ int Cities::countIsolated()
 
 void Cities::print_route(spRoute spR)
 {
-	for (int i = 0; i < spR.way.size(); i++) {
+	for (int i = 0; i < spR.way.size()-1; i++) {
 		cout << city_data[spR.way[i]].name << "-";
 	}
-	cout << endl << spR.weight;
+	cout << city_data[spR.way[spR.way.size() - 1]].name << endl << "å…±èŠ±è´¹" << spR.weight << endl << "åœ°å›¾è·¯å¾„å·²ä¿å­˜åœ¨graph.htmä¸­";
+	draw_route_in_map(spR);
 }
 
 void Cities::print_routes()

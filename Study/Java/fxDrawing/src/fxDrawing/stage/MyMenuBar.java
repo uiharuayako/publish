@@ -13,11 +13,14 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.FileChooser;
 import javafx.stage.StageStyle;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * @see MyMenuBar
@@ -46,15 +49,14 @@ public class MyMenuBar {
         file = new Menu();
         file.setText("文件");
         file.setStyle("-fx-font-size:14;");
-/*
 //打开功能暂时废弃
-        miOpen = new MenuItem();
+/*        miOpen = new MenuItem();
         miOpen.setText("打开");
         miOpen.setStyle("-fx-font-size:14;");
 		miOpen.setOnAction((ActionEvent t) -> {
 			//打开
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image", "*.png", "*.jpg", "*.jpeg"));
+			fileChooser.getExtensionFilters().addAll(new FileNameExtensionFilter(".png", ".jpg", ".jpeg"));
 			fileChooser.setTitle("打开图片");// 打开图片
 			File file = fileChooser.showOpenDialog(mainStage);
 			if (file != null) {
@@ -65,8 +67,7 @@ public class MyMenuBar {
 					System.out.println(ex.getMessage());
 				}
 			}
-		});
-*/
+		});*/
 
         miSave = new MenuItem();
         miSave.setText("保存");

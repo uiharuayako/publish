@@ -60,6 +60,12 @@
     <ClInclude Include="CShape.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CPolyline.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CSetupDrawDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCImageMap.cpp">
@@ -96,6 +102,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CShape.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CPolyline.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CSetupDrawDialog.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

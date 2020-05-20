@@ -12,6 +12,17 @@ protected: // 仅从序列化创建
 	DECLARE_DYNCREATE(CMFCImageMapView)
 
 	BITMAPINFO* m_lpBitmap;
+
+	CPoint m_ptCursor;
+	CPoint m_ptOrigin;
+	BOOL m_bDraw;
+
+	CShape* m_pShape;
+	string m_strVectType;
+
+	COLORREF m_LineColor;
+	int m_nLineType;
+	int m_nLineWidth;
 // 特性
 public:
 	CMFCImageMapDoc* GetDocument() const;
@@ -47,6 +58,13 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnUpdateIndicatorCoord(CCmdUI* pCmdUI);
+	afx_msg void OnDrawDoubleSideRoad();
+	afx_msg void OnDrawSigleLineRoad();
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnUpdateDrawDoubleSideRoad(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateDrawSigleLineRoad(CCmdUI* pCmdUI);
+	afx_msg void OnSetupDrawMode();
 };
 
 #ifndef _DEBUG  // MFCImageMapView.cpp 中的调试版本

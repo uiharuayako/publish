@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><style type='text/css'>body, html{width: 100%;height: 100%;margin:0;font-family:'微软雅黑';}#allmap{height:100%;width:100%;}#r-result{width:100%;}</style><script type='text/javascript' src='http://api.map.baidu.com/api?v=2.0&ak=nSxiPohfziUaCuONe4ViUP2N'></script><title>Shortest path</title></head><body><div id='allmap'></div></div></body></html><script type='text/javascript'>
+var map = new BMap.Map('allmap');
+var point = new BMap.Point(0, 0);map.centerAndZoom(point, 2);map.enableScrollWheelZoom(true);
+var marker0 = new BMap.Marker(new BMap.Point(116.333000, 39.916700));map.addOverlay(marker0);
+var infoWindow0 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: China<br/>city: Beijing</p>");marker0.addEventListener("click", function(){this.openInfoWindow(infoWindow0);}); 
+
+var marker1 = new BMap.Marker(new BMap.Point(-0.083333, 51.600000));map.addOverlay(marker1);
+var infoWindow1 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: United Kingdom of Great Britain and Northern Ireland<br/>city: London</p>");marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);}); 
+var contentString01 = '乘坐plane，从China的Beijing，到United Kingdom of Great Britain and Northern Ireland的London共用时14.000000，花费了771.000000美元。更多信息：http://www.momondo.com/multicity/?Search=true&TripType=oneway&SegNo=1&SO0=SEL&SD0=TYO&SDP0=10-04-2013&AD=1&DO=false&NA=false#Search=true&TripType=oneway&SegNo=1&SO0=BJS&SD0=LON&SDP0=10-04-2013&AD=1&DO=false&NA=false,,,,,,';
+var path1 = new BMap.Polyline([new BMap.Point(116.333000, 39.916700),new BMap.Point(-0.083333, 51.600000)], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path1);path1.addEventListener("click", function(){alert(contentString01);});
+
+var marker2 = new BMap.Marker(new BMap.Point(13.416700, 52.500000));map.addOverlay(marker2);
+var infoWindow2 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: Germany<br/>city: Berlin</p>");marker2.addEventListener("click", function(){this.openInfoWindow(infoWindow2);}); 
+var contentString02 = '乘坐plane，从United Kingdom of Great Britain and Northern Ireland的London，到Germany的Berlin共用时1.920000，花费了174.000000美元。更多信息：COPY: http://www.momondo.com/multicity/?<BR><BR>Search=true&TripType=oneway&SegNo=1&SO0=BOG&SD0=UIO&SDP0=03-04-<BR><BR>2013&AD=1&DO=false&NA=false#Search=true&TripType=oneway&SegNo=1&SO0=BER&SD0<BR><BR>=LON&SDP0=01-04-2013&AD=1&DO=false&NA=false,,,,,,';
+var path2 = new BMap.Polyline([new BMap.Point(-0.083333, 51.600000),new BMap.Point(13.416700, 52.500000)], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path2);path2.addEventListener("click", function(){alert(contentString02);});
+
+</script>

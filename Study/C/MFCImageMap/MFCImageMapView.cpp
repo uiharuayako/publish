@@ -12,6 +12,7 @@
 
 #include "MFCImageMapDoc.h"
 #include "MFCImageMapView.h"
+#include "CSetupDrawDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -58,6 +59,13 @@ BEGIN_MESSAGE_MAP(CMFCImageMapView, CScrollView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
 	ON_UPDATE_COMMAND_UI(ID_INDICATOR_COORD, &CMFCImageMapView::OnUpdateIndicatorCoord)
+	ON_COMMAND(ID_DRAW_DOUBLE_SIDE_ROAD, &CMFCImageMapView::OnDrawDoubleSideRoad)
+	ON_COMMAND(ID_DRAW_SIGLE_LINE_ROAD, &CMFCImageMapView::OnDrawSigleLineRoad)
+	ON_WM_LBUTTONDOWN()
+	ON_WM_MOUSEMOVE()
+	ON_UPDATE_COMMAND_UI(ID_DRAW_DOUBLE_SIDE_ROAD, &CMFCImageMapView::OnUpdateDrawDoubleSideRoad)
+	ON_UPDATE_COMMAND_UI(ID_DRAW_SIGLE_LINE_ROAD, &CMFCImageMapView::OnUpdateDrawSigleLineRoad)
+	ON_COMMAND(ID_SETUP_DRAW_MODE, &CMFCImageMapView::OnSetupDrawMode)
 END_MESSAGE_MAP()
 
 // CMFCImageMapView 构造/析构
@@ -66,6 +74,16 @@ CMFCImageMapView::CMFCImageMapView() noexcept
 {
 	// TODO: 在此处添加构造代码
 	m_lpBitmap = nullptr;// 初始化图像查看
+	m_ptCursor.x = m_ptCursor.y = 0;// 作用未知
+
+	m_ptOrigin.x = m_ptOrigin.y = 0;
+	m_bDraw = FALSE;
+	m_strVectType = "single-road";
+	m_pShape = CShapeFactory::CreateShape(m_strVectType);
+
+	m_LineColor = RGB(0, 0, 0);
+	m_nLineType = 0;
+	m_nLineWidth = 1;
 }
 
 CMFCImageMapView::~CMFCImageMapView()
@@ -74,6 +92,7 @@ CMFCImageMapView::~CMFCImageMapView()
 		delete m_lpBitmap;
 		m_lpBitmap = nullptr;
 	}
+	CShapeFactory::ReleaseShape(&m_pShape);
 }
 
 BOOL CMFCImageMapView::PreCreateWindow(CREATESTRUCT& cs)
@@ -102,6 +121,31 @@ void CMFCImageMapView::OnDraw(CDC* pDC)
 		0, 0, nCols, nRows,
 		0, 0, nCols, nRows,
 		pData, m_lpBitmap, DIB_RGB_COLORS, SRCCOPY);
+	//int nPenStyle = 0;
+	// 为啥不用switch？
+	/*switch (m_nLineType) {
+	case 0:
+		nPenStyle = PS_SOLID;
+		break;
+	case 1:
+		nPenStyle = PS_DASH;
+		break;
+	case 2:
+		nPenStyle = PS_DOT;
+		break;
+	case 3:
+		nPenStyle = PS_DASHDOT;
+		break;
+	case 4:
+		nPenStyle = PS_DASHDOTDOT;
+		break;
+	}*/
+	// 为啥要写这些代码？
+	CPen pen(m_nLineType, m_nLineWidth, m_LineColor);
+	CPen* pOldPen = pDC->SelectObject(&pen);
+	pDoc->DrawShapes(pDC);
+	pDC->SelectObject(pOldPen);
+	pen.DeleteObject();
 }
 
 void CMFCImageMapView::OnInitialUpdate()
@@ -149,10 +193,17 @@ void CMFCImageMapView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 	// TODO: 添加打印后进行的清理过程
 }
 
-void CMFCImageMapView::OnRButtonUp(UINT /* nFlags */, CPoint point)
+void CMFCImageMapView::OnRButtonUp(UINT nFlags, CPoint point)
 {
-	ClientToScreen(&point);
-	OnContextMenu(this, point);
+	CMFCImageMapDoc* pDoc = GetDocument();
+	if (m_bDraw && pDoc) {
+		m_bDraw = FALSE;
+		pDoc->AddShape(m_pShape);
+		Invalidate(TRUE);
+
+		m_pShape = CShapeFactory::CreateShape(m_strVectType);
+	}
+	//CScrollView::OnRButtonUp(nFlags, point);
 }
 
 void CMFCImageMapView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
@@ -206,4 +257,84 @@ void CMFCImageMapView::OnUpdateIndicatorCoord(CCmdUI* pCmdUI)
 	CString strPoint;
 	strPoint.Format(L"该点坐标(X: %.2lf , Y: %.2lf )", geo_x, geo_y);
 	pCmdUI->SetText(strPoint);
+}
+
+
+void CMFCImageMapView::OnDrawDoubleSideRoad()
+{
+	// TODO: 在此添加命令处理程序代码
+	CShapeFactory::ReleaseShape(&m_pShape);
+	m_strVectType = "double-road";
+	m_pShape = CShapeFactory::CreateShape(m_strVectType);
+}
+
+
+void CMFCImageMapView::OnDrawSigleLineRoad()
+{
+	// TODO: 在此添加命令处理程序代码
+	CShapeFactory::ReleaseShape(&m_pShape);
+	m_strVectType = "single-road";
+	m_pShape = CShapeFactory::CreateShape(m_strVectType);
+}
+
+
+void CMFCImageMapView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	CClientDC dc(this);
+	OnPrepareDC(&dc);
+	dc.DPtoLP(&point);
+
+	m_ptOrigin = point;
+	m_bDraw = TRUE;
+	m_pShape->AddPoint(point);
+
+	CScrollView::OnLButtonDown(nFlags, point);
+}
+
+
+void CMFCImageMapView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if (m_bDraw) {
+		CClientDC dc(this);
+		OnPrepareDC(&dc);
+		dc.DPtoLP(&point);
+
+		m_pShape->DrawXOR(&dc, m_ptOrigin);
+		m_ptOrigin = point;
+		m_pShape->DrawXOR(&dc, point);
+	}
+
+	CScrollView::OnMouseMove(nFlags, point);
+}
+
+
+void CMFCImageMapView::OnUpdateDrawDoubleSideRoad(CCmdUI* pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck((m_strVectType == "double-road"));
+}
+
+
+void CMFCImageMapView::OnUpdateDrawSigleLineRoad(CCmdUI* pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck((m_strVectType == "single-road"));
+}
+
+
+void CMFCImageMapView::OnSetupDrawMode()
+{
+	// TODO: 在此添加命令处理程序代码
+	CSetupDrawDialog dialog;
+	dialog.m_SelectedColor = m_LineColor;
+	dialog.m_nLineIndex = m_nLineType;
+	dialog.m_nLineWidth = m_nLineWidth;
+	if (dialog.DoModal() == IDOK) {
+		m_LineColor = dialog.m_SelectedColor;
+		m_nLineType = dialog.m_nLineIndex;
+		m_nLineWidth = dialog.m_nLineWidth;
+		Invalidate(TRUE);
+	}
 }

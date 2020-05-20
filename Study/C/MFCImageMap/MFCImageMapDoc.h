@@ -5,7 +5,7 @@
 
 #pragma once
 #include "IdpmImage.h"
-
+#include "CShape.h"
 class CMFCImageMapDoc : public CDocument
 {
 protected: // 仅从序列化创建
@@ -16,6 +16,9 @@ protected: // 仅从序列化创建
 	BYTE* m_pData;
 	int m_nCols, m_nRows, m_nBytes;
 	BOOL ReadImage(const char* lpszPathName);// 读取图片文件的函数
+
+	std::vector<CShape*> m_Shapes;
+	void ReleaseShapes();
 // 特性
 public:
 
@@ -28,6 +31,8 @@ public:
 	void ImageCoord2World(double x, double y, double* gx, double* gy) {
 		m_ImgObject.ImageToGeoProj(x, y, gx, gy);
 	}
+	void AddShape(CShape* pShape) { if (pShape) m_Shapes.push_back(pShape); }
+	void DrawShapes(CDC* pDC);
 // 重写
 public:
 	virtual BOOL OnNewDocument();

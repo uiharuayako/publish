@@ -34,9 +34,7 @@ public class DetailPanel {
         fontSize = new ComboBox<Integer>();
         fontSize.setStyle("-fx-base:#888888;-fx-background-color:#666666;");
         fontSize.setPrefWidth(Size.DETAIL_WIDTH);
-        for (int i = 8; i <= 36; i += 2) {
-            fontSizeItems.add(i);
-        }
+        for (int i = 8; i <= 36; i += 2) fontSizeItems.add(i);
         fontSize.setItems(fontSizeItems);
         fontSize.getSelectionModel().select(0);
         fontSize.valueProperty().addListener((ov, oldv, newv) -> {
@@ -44,9 +42,7 @@ public class DetailPanel {
         });
         // 初始化字体
         fontFamily = new ComboBox<String>();
-        for (int i = 0; i < Font.getFamilies().size(); i++) {
-            fontFamilyItems.add(Font.getFamilies().get(i));
-        }
+        fontFamilyItems.addAll(Font.getFamilies());
         fontFamily.setStyle("-fx-base:#888888;-fx-background-color:#666666;");
         fontFamily.setPrefWidth(Size.DETAIL_WIDTH);
         fontFamily.setItems(fontFamilyItems);

@@ -68,6 +68,17 @@ BOOL CMFCImageMapDoc::ReadImage(const char* lpszPathName)
 	return TRUE;
 }
 
+void CMFCImageMapDoc::ReleaseShapes()
+{
+	CShape** pShape = m_Shapes.data();
+	size_t nShape = m_Shapes.size();
+
+	for (size_t i = 0; i < nShape; i++) {
+		CShapeFactory::ReleaseShape(&pShape[i]);
+	}
+	m_Shapes.clear();
+}
+
 CMFCImageMapDoc::~CMFCImageMapDoc()
 {
 	// 这里是析构函数代码
@@ -76,6 +87,16 @@ CMFCImageMapDoc::~CMFCImageMapDoc()
 		m_pData = nullptr;
 	}
 	m_ImgObject.Close();
+	ReleaseShapes();
+}
+
+void CMFCImageMapDoc::DrawShapes(CDC* pDC)
+{
+	CShape** pShape = m_Shapes.data();
+	size_t nShape = m_Shapes.size();
+	for (size_t i = 0; i < nShape; i++) {
+		if (pShape[i]) pShape[i]->Draw(pDC);
+	}
 }
 
 BOOL CMFCImageMapDoc::OnNewDocument()

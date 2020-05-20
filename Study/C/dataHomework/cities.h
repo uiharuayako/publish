@@ -48,6 +48,7 @@ struct Route_h_l
 	double hours;
 	double price;
 	double length;
+	string info;
 	string way;
 	Route_h_l() {
 		isConnected = false;
@@ -80,6 +81,27 @@ struct spRoute {
 		way.push_back(n);
 		weight += wei;
 	}
+	void clearWeight() {
+		weight = 0;
+	}
+	//深拷贝是必须的
+	spRoute(const spRoute& old) {
+		this->way.clear();
+		for (int i = 0; i < old.way.size(); i++) {
+			int j = old.way[i];
+			this->way.push_back(j);//深拷贝
+		}
+		this->weight = old.weight;
+	}
+	spRoute& operator=(spRoute& old) {
+		this->way.clear();
+		for (int i = 0; i < old.way.size(); i++) {
+			int j = old.way[i];
+			this->way.push_back(j);//深拷贝
+		}
+		this->weight = old.weight;
+		return *this;
+	}
 };//这是每一条，特殊化的路径
 class Cities
 {
@@ -100,11 +122,13 @@ public:
 	void connect_all_in_order();//按顺序连接全部城市，不计重复
 	void connect_all_in_time();//选择时间最小的连接路线
 	void connect_all_in_price();//选择时间最小的连接路线
-	void connect_all_in_time_price(double money);//按照你的一个小时值多少钱来针对性算出最适合你的路径
+	void connect_all_in_time_price(double money);//按照误工费针对性算出最适合你的路径
 	void DFS(string city_n);//深度遍历所有城市，非递归
 	spRoute find_min_time_spRoute(int startCity, int endCity);//返回两城市之间的最短时间路径
 	spRoute find_min_length_spRoute(int startCity, int endCity);//返回两城市之间的最短路程路径
 	spRoute find_min_price_spRoute(int startCity, int endCity);//返回两城市之间的最低价格路径
+	void draw_route_in_map(spRoute route);//使用百度地图画图
+	string way_in_one_sentense(int start, int end);
 	bool verif_consistency();//测试用函数
 	void print_cities();//调试用，打印城市信息
 	void print_unvisited();//调试用，打印未被访问的城市的信息

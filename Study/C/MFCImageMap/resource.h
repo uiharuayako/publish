@@ -2,6 +2,7 @@
 // Microsoft Visual C++ 生成的包含文件。
 // 供 MFCImageMap.rc 使用
 //
+#define IDD_SETUP_DRAW_DIALOG           9
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
 #define IDR_POPUP_EDIT                  119
@@ -23,7 +24,9 @@
 #define ID_OPEN_WITH                    137
 #define ID_DUMMY_COMPILE                138
 #define ID_CLASS_ADD_MEMBER_FUNCTION    139
+#define ID_DRAW_DOUBLE_SIDE_ROAD        139
 #define ID_CLASS_ADD_MEMBER_VARIABLE    140
+#define ID_DRAW_SIGLE_LINE_ROAD         140
 #define ID_CLASS_DEFINITION             141
 #define ID_CLASS_PROPERTIES             142
 #define ID_NEW_FOLDER                   143
@@ -84,16 +87,20 @@
 #define IDS_FIND_TAB                    302
 #define IDS_EXPLORER                    305
 #define IDS_EDIT_MENU                   306
-#define IDS_STRING59394                 59142
+#define IDCANCEL                        1004
+#define IDC_VECTOR_LINE_TYPE            1005
+#define IDC_PEN_COLOR_BUTTON            1006
+#define IDC_VECTOR_LINE_WIDTH           1007
+#define ID_SETUP_DRAW_MODE              32776
 #define ID_INDICATOR_COORD              59142
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        310
-#define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1000
+#define _APS_NEXT_RESOURCE_VALUE        320
+#define _APS_NEXT_COMMAND_VALUE         32777
+#define _APS_NEXT_CONTROL_VALUE         1008
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
