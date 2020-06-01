@@ -1,5 +1,8 @@
 #include "cities.h"
 using namespace std;
+
+//main.cpp仅包含简单的命令行界面，本程序的代码主要在cities.h和cities.cpp中实现
+
 int main() {
 	Cities a;
 	int cho1 = 1;

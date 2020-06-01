@@ -243,6 +243,7 @@ void Cities::DFS(string city_n)
 	visit(ves);
 	s.push(city_data[ves]);
 	City tmpCity;
+	//while循环的复杂度为n*(2+3n+1)
 	while (!s.empty()) {
 		tmpCity = s.top();//取临时变量为栈顶
 		int i;
@@ -263,20 +264,22 @@ void Cities::DFS(string city_n)
 spRoute Cities::find_min_time_spRoute(int startCity, int endCity)
 {
 	vector<spRoute> allRoute;
-	//初始化所有路径
+	//初始化所有路径，复杂度3n
 	for (int i = 0; i < city_data.size(); i++) {
 		spRoute tmpRoute(startCity, i);
 		tmpRoute.addCity(i, route_info[startCity][i].hours);
 		allRoute.push_back(tmpRoute);
 	}
-	//将所有城市置于非访问状态
+	//将所有城市置于非访问状态，复杂度n
 	clearVisit();
+	//下面三行的复杂度为3
 	city_data[startCity].isVisited = true;//访问第一个城市
 	double min_cost;//最低权重
 	int min_city;//最短城市的下标
-	//主循环
+	//主循环，复杂度n*(1+3n+1+5n)=n*(8n+2)=8n^2+2n
 	for (int i = 1; i < city_data.size(); i++) {
 		min_cost = 99999;
+		//小循环，复杂度3n
 		for (int j = 0; j < city_data.size(); j++) {
 			//确保该城市未被访问，且当起始城市到该城市的距离比当前的min_cost更小时（这个循环旨在找到已知的最短路径
 			if (city_data[j].isVisited == false && allRoute[j].weight < min_cost) {
@@ -286,6 +289,7 @@ spRoute Cities::find_min_time_spRoute(int startCity, int endCity)
 		}
 		//找到了当前最短城市，访问
 		city_data[min_city].isVisited = true;
+		//复杂度5n
 		for (int j = 0; j < city_data.size(); j++) {
 			//如果未被访问，有连接，且经过min_city访问这个城市路径更短
 			if (city_data[j].isVisited == false 

@@ -4,14 +4,29 @@ var point = new BMap.Point(0, 0);map.centerAndZoom(point, 2);map.enableScrollWhe
 var marker0 = new BMap.Marker(new BMap.Point(116.333000, 39.916700));map.addOverlay(marker0);
 var infoWindow0 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: China<br/>city: Beijing</p>");marker0.addEventListener("click", function(){this.openInfoWindow(infoWindow0);}); 
 
-var marker1 = new BMap.Marker(new BMap.Point(-0.083333, 51.600000));map.addOverlay(marker1);
-var infoWindow1 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: United Kingdom of Great Britain and Northern Ireland<br/>city: London</p>");marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);}); 
-var contentString01 = '乘坐plane，从China的Beijing，到United Kingdom of Great Britain and Northern Ireland的London共用时14.000000，花费了771.000000美元。更多信息：http://www.momondo.com/multicity/?Search=true&TripType=oneway&SegNo=1&SO0=SEL&SD0=TYO&SDP0=10-04-2013&AD=1&DO=false&NA=false#Search=true&TripType=oneway&SegNo=1&SO0=BJS&SD0=LON&SDP0=10-04-2013&AD=1&DO=false&NA=false,,,,,,';
-var path1 = new BMap.Polyline([new BMap.Point(116.333000, 39.916700),new BMap.Point(-0.083333, 51.600000)], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path1);path1.addEventListener("click", function(){alert(contentString01);});
+var marker1 = new BMap.Marker(new BMap.Point(105.917000, 21.083300));map.addOverlay(marker1);
+var infoWindow1 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: Vietnam<br/>city: Hanoi</p>");marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);}); 
+var contentString01 = '乘坐train，从China的Beijing，到Vietnam的Hanoi共用时48.000000，花费了100.000000美元。更多信息：http://www.chinahighlights.com/travelguide/transportation/beijing-to-hanoi-train.htm,,,,,,';
+var path1 = new BMap.Polyline([new BMap.Point(116.333000, 39.916700),new BMap.Point(105.917000, 21.083300)], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path1);path1.addEventListener("click", function(){alert(contentString01);});
 
-var marker2 = new BMap.Marker(new BMap.Point(13.416700, 52.500000));map.addOverlay(marker2);
-var infoWindow2 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: Germany<br/>city: Berlin</p>");marker2.addEventListener("click", function(){this.openInfoWindow(infoWindow2);}); 
-var contentString02 = '乘坐plane，从United Kingdom of Great Britain and Northern Ireland的London，到Germany的Berlin共用时1.920000，花费了174.000000美元。更多信息：COPY: http://www.momondo.com/multicity/?<BR><BR>Search=true&TripType=oneway&SegNo=1&SO0=BOG&SD0=UIO&SDP0=03-04-<BR><BR>2013&AD=1&DO=false&NA=false#Search=true&TripType=oneway&SegNo=1&SO0=BER&SD0<BR><BR>=LON&SDP0=01-04-2013&AD=1&DO=false&NA=false,,,,,,';
-var path2 = new BMap.Polyline([new BMap.Point(-0.083333, 51.600000),new BMap.Point(13.416700, 52.500000)], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path2);path2.addEventListener("click", function(){alert(contentString02);});
+var marker2 = new BMap.Marker(new BMap.Point(102.600000, 17.966700));map.addOverlay(marker2);
+var infoWindow2 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: Lao People@s Democratic Republic<br/>city: Vientiane</p>");marker2.addEventListener("click", function(){this.openInfoWindow(infoWindow2);}); 
+var contentString02 = '乘坐bus，从Vietnam的Hanoi，到Lao People@s Democratic Republic的Vientiane共用时24.000000，花费了30.000000美元。更多信息："Visa required by UK, EU, US & Australian citizens. <BR>Some buses are uncomfortable (rocky road over mountain, etc. for the first half of the trip)<BR><BR>http://seat61.com/Laos.htm#.UUdpOByG3XE",,,,,,';
+var path2 = new BMap.Polyline([new BMap.Point(105.917000, 21.083300),new BMap.Point(102.600000, 17.966700)], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path2);path2.addEventListener("click", function(){alert(contentString02);});
+
+var marker3 = new BMap.Marker(new BMap.Point(100.583000, 13.750000));map.addOverlay(marker3);
+var infoWindow3 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: Thailand<br/>city: Bangkok</p>");marker3.addEventListener("click", function(){this.openInfoWindow(infoWindow3);}); 
+var contentString03 = '乘坐train，从Lao People@s Democratic Republic的Vientiane，到Thailand的Bangkok共用时13.000000，花费了23.000000美元。更多信息：Seat61.com ,,,,,,';
+var path3 = new BMap.Polyline([new BMap.Point(102.600000, 17.966700),new BMap.Point(100.583000, 13.750000)], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path3);path3.addEventListener("click", function(){alert(contentString03);});
+
+var marker4 = new BMap.Marker(new BMap.Point(103.852000, 1.281000));map.addOverlay(marker4);
+var infoWindow4 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: Singapore<br/>city: Singapore</p>");marker4.addEventListener("click", function(){this.openInfoWindow(infoWindow4);}); 
+var contentString04 = '乘坐train，从Thailand的Bangkok，到Singapore的Singapore共用时48.000000，花费了65.000000美元。更多信息：Tickets bought in Singapore are double the price. <BR>Time varies google show about 2 days.<BR><BR>http://seat61.com/Malaysia.htm#Fares,,,,,,';
+var path4 = new BMap.Polyline([new BMap.Point(100.583000, 13.750000),new BMap.Point(103.852000, 1.281000)], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path4);path4.addEventListener("click", function(){alert(contentString04);});
+
+var marker5 = new BMap.Marker(new BMap.Point(-0.083333, 51.600000));map.addOverlay(marker5);
+var infoWindow5 = new BMap.InfoWindow("<p style = 'font-size:14px;'>country: United Kingdom of Great Britain and Northern Ireland<br/>city: London</p>");marker5.addEventListener("click", function(){this.openInfoWindow(infoWindow5);}); 
+var contentString05 = '乘坐plane，从Singapore的Singapore，到United Kingdom of Great Britain and Northern Ireland的London共用时17.000000，花费了450.000000美元。更多信息：http://www.momondo.com/multicity/?Search=true&TripType=multi&SegNo=1&SO0=SIN&SD0=DCA&SDP0=16-05-2013&AD=1&NA=false#Search=true&TripType=oneway&SegNo=1&SO0=SIN&SD0=LON&SDP0=16-05-2013&AD=1&DO=false&NA=false,,,,,,';
+var path5 = new BMap.Polyline([new BMap.Point(103.852000, 1.281000),new BMap.Point(-0.083333, 51.600000)], {strokeColor:'#18a45b', strokeWeight:8, strokeOpacity:0.8});map.addOverlay(path5);path5.addEventListener("click", function(){alert(contentString05);});
 
 </script>

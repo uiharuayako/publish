@@ -4,8 +4,13 @@
 
 
 #pragma once
-
-
+#include <vector>;
+struct Student
+{
+	int _id{};
+	double _score[4]{};
+	double _total{};
+};
 class CScoreSheetDoc : public CDocument
 {
 protected: // 仅从序列化创建
@@ -36,7 +41,7 @@ public:
 #endif
 
 protected:
-
+	std::vector<Student> _students;
 // 生成的消息映射函数
 protected:
 	DECLARE_MESSAGE_MAP()

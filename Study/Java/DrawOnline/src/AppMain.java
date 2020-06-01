@@ -1,5 +1,6 @@
 import FXStage.MyCanvas;
 import FXStage.MyMenuBar;
+import FXStage.MyNetBar;
 import FXStage.ToolsPane;
 import Network.Sever;
 import icon.IconImage;
@@ -28,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//包括菜单栏设计和程序入口
+//程序入口
 public class AppMain extends Application {
 
     public static void main(String[] args) {
@@ -45,13 +46,15 @@ public class AppMain extends Application {
         //以下是主要组件的添加
         primaryStage.getIcons().add(IconImage.getImage("ICON"));
         ToolsPane tools=new ToolsPane();
-        MyCanvas canvas=new MyCanvas();
+        MyNetBar myNetBar=new MyNetBar();
+        MyCanvas canvas=new MyCanvas(myNetBar);
         MyMenuBar menuBar=new MyMenuBar(canvas);
         BorderPane bp=new BorderPane();
         bp.setTop(menuBar.getMenu());
         bp.setLeft(tools.getToolsPane());
         bp.setCenter(canvas.getCanvas());
         bp.setBottom(canvas.getStatusBar());
+        bp.setRight(myNetBar.getRoot());
         //以下是必要的附加代码
         primaryStage.setScene(new Scene(bp));
         primaryStage.setTitle("联网画板");

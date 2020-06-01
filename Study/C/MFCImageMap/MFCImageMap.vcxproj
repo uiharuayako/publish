@@ -194,6 +194,7 @@
     <ClInclude Include="CPolyline.h" />
     <ClInclude Include="CSetupDrawDialog.h" />
     <ClInclude Include="CShape.h" />
+    <ClInclude Include="entity.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainFrm.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="CPolyline.cpp" />
     <ClCompile Include="CSetupDrawDialog.cpp" />
     <ClCompile Include="CShape.cpp" />
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MFCImageMap.cpp" />

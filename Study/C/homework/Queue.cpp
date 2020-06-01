@@ -9,7 +9,7 @@ Queue::Queue(int s)
 	size = 0;
 	//队列的长度是s，除了头结点还有s-1个节点，我想在每个节点里都储存数字
 	for (int i = 0; i < s-1; i++) {
-		NODE* tmp = new NODE();
+		Node* tmp = new Node();
 		Cur->next = tmp;
 		Cur = Cur->next;
 	}

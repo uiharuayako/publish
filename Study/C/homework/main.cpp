@@ -60,16 +60,16 @@ void Select(HuffmanTree HFT, int end, int* s1, int* s2)
     }
 }
 //模仿ppt方法，创建哈夫曼树，但是没用引用。HT为一棵树，w为权重数组，n为结点个数
-void CreateHuffmanTree(HuffmanTree* HT, int* w, int n)
+void HuffmanTreeConstructing(HuffmanTree* T, int* s, int n)
 {
     if (n <= 1) return; // 如果只有一个编码就相当于0
     int m = 2 * n - 1; // 哈夫曼树总节点数，n就是叶子结点
-    *HT = new HTNode[m + 1]; // 0号位置不用，从1到n
-    HuffmanTree p = *HT;//p为操作用结点
+    *T = new HTNode[m + 1]; // 0号位置不用，从1到n
+    HuffmanTree p = *T;//p为操作用结点
     // 初始化哈夫曼树中的所有结点，共有n个，权重为w数组相应位置中的值
     for (int i = 1; i <= n; i++)
     {
-        (p + i)->weight = w[i - 1];
+        (p + i)->weight = s[i - 1];
         (p + i)->parent = 0;
         (p + i)->left = 0;
         (p + i)->right = 0;
@@ -87,11 +87,11 @@ void CreateHuffmanTree(HuffmanTree* HT, int* w, int n)
     for (int i = n + 1; i <= m; i++)
     {
         int s1, s2;
-        Select(*HT, i - 1, &s1, &s2);//这时候n+1的权为0，不被纳入搜索范围
-        (*HT)[s1].parent = (*HT)[s2].parent = i;//设定s1,s2的父结点
-        (*HT)[i].left = s1;//设定左子树，总比右小
-        (*HT)[i].right = s2;
-        (*HT)[i].weight = (*HT)[s1].weight + (*HT)[s2].weight;//设定权值
+        Select(*T, i - 1, &s1, &s2);//这时候n+1的权为0，不被纳入搜索范围
+        (*T)[s1].parent = (*T)[s2].parent = i;//设定s1,s2的父结点
+        (*T)[i].left = s1;//设定左子树，总比右小
+        (*T)[i].right = s2;
+        (*T)[i].weight = (*T)[s1].weight + (*T)[s2].weight;//设定权值
     }
 }
 //HT为生成的哈夫曼树，HC为存储结点哈夫曼编码的二维动态数组，n为结点的个数
@@ -131,7 +131,7 @@ void printProject(const char* sen) {
     cout << sen << endl;
     cout << "----------------------------------" << endl;
 }
-int main()
+int main1()
 {
 	srand((int)time(0));//随机数种子设定为当前时间，作用域为全局
 	//第一项演示开始
@@ -148,7 +148,7 @@ int main()
 	int n = 6;
 	HuffmanTree myTree;
 	char** treeCode;
-	CreateHuffmanTree(&myTree, w, n);
+	HuffmanTreeConstructing(&myTree, w, n);
 	HuffmanCoding(myTree, &treeCode, n);
 	printHT(treeCode, w, n);
     PAUSE CLS

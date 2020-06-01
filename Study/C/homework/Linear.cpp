@@ -9,7 +9,7 @@ void Linear::go(int index)
 }
 
 Linear::Linear(){
-	Head=new NODE();
+	Head=new Node();
 	size = 0;
 }
 
@@ -36,7 +36,7 @@ void Linear::add(int index, int num)
 	}
 	else {
 		go(index);
-		NODE* newNode = new NODE(num);
+		Node* newNode = new Node(num);
 		newNode->next = Cur->next;
 		Cur->next = newNode;
 	}
@@ -59,7 +59,7 @@ void Linear::remove(int index)
 	}
 	else {
 		go(index - 1);
-		NODE* tmp = Cur->next;
+		Node* tmp = Cur->next;
 		Cur->next = Cur->next->next;//跳过下一个节点
 		delete tmp;
 	}
@@ -95,6 +95,33 @@ int Linear::getIndexData(int index)
 int Linear::random(int a, int b)
 {
 	return rand() % (b - a + 1) + a;
+}
+
+void Linear::RemoveDuplicates(Node* head, int s[], int n)
+{
+	// 由该题性质，结合边权值特性，链表中可能出现的数字不会太大，且均为整数。
+	// 该方法的思路为，创建一个足够大的布尔数组，true表示该下标对应的数字出现过，false表示未出现过，来实现判断
+	bool isAppear[100] = { false };// 开辟一个bool数组
+	s = new int[100];// 为顺序数组开辟足够大的空间
+	s[0] = head->data;// 将第一个元素放入s
+	int k = 1;// k为s的长度，也为其下标
+	isAppear[head->data] = true;
+	Node* cur = head;// 定义一个可移动指针
+	for (int i = 0; cur != nullptr && cur->next != nullptr; i++) {
+		if (isAppear[cur->next->data]) {
+			// 当，当前节点的下一个节点的数据出现过
+			cur->next = cur->next->next;// 删除该节点
+		}
+		else {
+			// 没出现过，加以记录
+			s[k] = cur->next->data;
+			k++;
+			isAppear[cur->next->data] = true;
+		}/*
+		if (cur->next == nullptr) {
+			break;
+		}*/
+		cur = cur->next;// 到下一个节点
 }
 
 void Linear::showOff()

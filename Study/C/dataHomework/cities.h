@@ -115,13 +115,13 @@ class Cities
 	void visit(int num);//简单访问一下
 public:
 	Cities();//初始化
-	City search(string this_name);//返回名为name的city
-	int search_index(string this_name);//返回名为city的编号
+	City search(string this_name);//返回名为name的city，复杂度为2n
+	int search_index(string this_name);//返回名为city的编号，复杂度为2n
 	Route_h_l** route_info;//邻接矩阵，是一个二维动态数组，可以随着数据的增加而自动增加
 	bool is_connected_name(string city1, string city2);
-	void connect_all_in_order();//按顺序连接全部城市，不计重复
-	void connect_all_in_time();//选择时间最小的连接路线
-	void connect_all_in_price();//选择时间最小的连接路线
+	void connect_all_in_order();//按顺序连接全部城市，不计重复，复杂度9n
+	void connect_all_in_time();//选择时间最小的连接路线，复杂度同上
+	void connect_all_in_price();//选择时间最小的连接路线，同上
 	void connect_all_in_time_price(double money);//按照误工费针对性算出最适合你的路径
 	void DFS(string city_n);//深度遍历所有城市，非递归
 	spRoute find_min_time_spRoute(int startCity, int endCity);//返回两城市之间的最短时间路径
@@ -129,6 +129,7 @@ public:
 	spRoute find_min_price_spRoute(int startCity, int endCity);//返回两城市之间的最低价格路径
 	void draw_route_in_map(spRoute route);//使用百度地图画图
 	string way_in_one_sentense(int start, int end);
+	//测试程序时用的函数，现在保留
 	bool verif_consistency();//测试用函数
 	void print_cities();//调试用，打印城市信息
 	void print_unvisited();//调试用，打印未被访问的城市的信息

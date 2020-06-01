@@ -7,20 +7,20 @@ using namespace std;
 
 class Linear {
 protected:
-	struct NODE {
-		NODE* next;
+	struct Node {
+		Node* next;
 		int data;
-		NODE() {
+		Node() {
 			next = nullptr;
 			data = 0;
 		}//初始化一个新结点
-		NODE(int d) {
+		Node(int d) {
 			next = nullptr;
 			data = d;
 		}
 	};//结点结构
-	NODE* Head;//头结点
-	NODE* Cur;//当前操作的结点，这样应该会让程序更简洁，而且避免了冗杂的传参
+	Node* Head;//头结点
+	Node* Cur;//当前操作的结点，这样应该会让程序更简洁，而且避免了冗杂的传参
 	int size;//链表长度
 	void go(int index);//使操作结点变为index位置
 	bool linear = true;
@@ -39,6 +39,7 @@ public:
 	int getCurData() { return Cur->data; }//获取当前结点数据
 	bool isNull() { return Cur->next == nullptr ? true : false; }//下一个结点是否为空？
 	static int random(int a, int b);//返回a，b闭区间的随机数
+	void RemoveDuplicates(Node* head, int s[], int n);
 	static void showOff();//展示
 };
 

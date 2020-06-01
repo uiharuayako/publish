@@ -1,5 +1,6 @@
 package FXStage;
 
+import icon.IconImage;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 public class MyMenuBar {
     MenuBar myBar;
+    NameList tools = new NameList();
     public MyMenuBar(MyCanvas tmpCanvas){
         // 以下是菜单栏的设计
         myBar=new MenuBar();
@@ -102,16 +104,34 @@ public class MyMenuBar {
         MenuItem connectNet = new MenuItem("与网络连接");
         connectNet.setStyle("-fx-font-size:14;");
         connectNet.setOnAction(event -> {
-            if(MyStatus.networkConnect) {
-                connectNet.setText("与网络连接");
-                MyStatus.networkConnect = false;
-            }
-            else{
-                connectNet.setText("与网络断开");
-                MyStatus.networkConnect = true;
+            try {
+                if (MyStatus.networkConnect) {
+                    connectNet.setText("与网络连接");
+                    tmpCanvas.disconnect();
+                    MyStatus.networkConnect = false;
+                } else {
+                    connectNet.setText("与网络断开");
+                    tmpCanvas.connectNet();
+                    MyStatus.networkConnect = true;
+                }
+            } catch (Exception e){}
+            tmpCanvas.netLabel.update();
+        });
+        MenuItem joinItem = new MenuItem("修改昵称");
+        joinItem.setOnAction(event -> {
+            TextInputDialog dialog = new TextInputDialog("");
+            dialog.setGraphic(IconImage.getImageView(IconImage.getImage("ICON")));
+            dialog.setTitle("昵称输入框");
+            dialog.setContentText("请输入（允许重名）：");
+            dialog.setHeaderText("输入希望使用的昵称");
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()){
+                MyStatus.nickName = result.get();
+                tools.addPeople(MyStatus.nickName,MyStatus.id);
+                tmpCanvas.joinNet(MyStatus.nickName);
             }
         });
-        netMenu.getItems().addAll(connectNet);
+        netMenu.getItems().addAll(connectNet,joinItem);
         // 添加进menu
         myBar.getMenus().addAll(fileMenu,editMenu,netMenu);
     }

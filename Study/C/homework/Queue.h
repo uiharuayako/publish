@@ -4,7 +4,7 @@ class Queue :
 	public Linear
 {
 protected:
-	NODE* Rear;//队尾
+	Node* Rear;//队尾
 	int totSize;//队列总长度
 	bool isFull() {return totSize==size;}//判断队列是否已满
 public:
