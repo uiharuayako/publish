@@ -82,6 +82,7 @@ public class Sever implements Runnable {
                         fos.flush();
                         System.out.println("服务器端接收到数据包，大小为" + size);
                     }while(count-36 < file_size*//*(size = is.read(buffer)) != -1*//*);*/
+                    Thread.sleep(50);
                     while (count < file_size) {
                         //从输入流中读取一个数据包
                         size = is.read(buffer);
@@ -107,7 +108,7 @@ public class Sever implements Runnable {
                     }
                 } catch (FileNotFoundException e) {
                     System.out.println("服务器写文件失败");
-                } catch (IOException e) {
+                } catch (Exception e) {
                     System.out.println("服务器：客户端断开连接");
                 }
             }

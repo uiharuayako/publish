@@ -55,6 +55,7 @@ public class UpdateImage extends Thread {
             }
             if (protocol.equals("sync")) {
                 try {
+                    Thread.sleep(50);
                     // 解析长度
                     comm = comm.substring(index + 1);
                     index = comm.indexOf("$");
@@ -93,7 +94,7 @@ public class UpdateImage extends Thread {
                     System.out.println("end");
                 } catch (FileNotFoundException e) {
                     System.out.println("服务器写文件失败");
-                } catch (IOException e) {
+                } catch (Exception e) {
                     System.out.println("服务器：客户端断开连接");
                 }
             }

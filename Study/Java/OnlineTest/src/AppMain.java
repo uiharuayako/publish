@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//包括菜单栏设计和程序入口
+//程序入口
 public class AppMain extends Application {
 
     public static void main(String[] args) {
